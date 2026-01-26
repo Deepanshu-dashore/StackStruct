@@ -1,0 +1,1 @@
+pnpm add "@radix-ui/react-slot" "@radix-ui/react-dropdown-menu" "@radix-ui/react-accordion" "@radix-ui/react-select" "@radix-ui/react-switch" "@radix-ui/react-scroll-area" "@radix-ui/react-label" "@radix-ui/react-toast"
