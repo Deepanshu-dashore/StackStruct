@@ -62,6 +62,41 @@ export function generateScript(tree, config) {
   commands.push("# -------------------------------------");
   commands.push('echo "✅ Project scaffolded successfully!"');
   commands.push(`echo "Navigate to your project: cd ${config.projectName}"`);
+  commands.push("");
+
+  // Tailwind v4.1 guidance (commands only, not executed)
+  const frameworkId = config.frontend?.framework || config.frontend || 'react';
+  const usingTailwind = config.styling === 'tailwind';
+  const tailwindInstall = [];
+  let runCmd = '';
+  let tailwindNotes = [];
+
+  if (usingTailwind) {
+    switch (frameworkId) {
+      case 'react':
+      case 'vue':
+      case 'astro':
+        tailwindInstall.push('npm install tailwindcss @tailwindcss/vite');
+        runCmd = 'npm run dev';
+        break;
+      case 'nextjs':
+        tailwindInstall.push('npm install tailwindcss @tailwindcss/postcss postcss');
+        runCmd = 'npm run dev';
+        break;
+      case 'angular':
+        tailwindInstall.push('npm install tailwindcss @tailwindcss/postcss postcss --force');
+        runCmd = 'ng serve';
+        tailwindNotes.push('Note: Angular CLI setup required for ng serve. This scaffold provides structure only.');
+        break;
+      default:
+        break;
+    }
+
+    commands.push('# Tailwind v4.1 setup tips (not executed)');
+    tailwindInstall.forEach((c) => commands.push(`echo "To add Tailwind manually: ${c}"`));
+    if (runCmd) commands.push(`echo "Start dev server: ${runCmd}"`);
+    tailwindNotes.forEach((n) => commands.push(`echo "${n}"`));
+  }
 
   // We return the components for the UI to display
   return {
@@ -71,6 +106,14 @@ export function generateScript(tree, config) {
       ...generateFiles(tree, ""),
     ],
     installCommands: installCommands,
+    tailwind: usingTailwind
+      ? {
+          framework: frameworkId,
+          install: tailwindInstall,
+          run: runCmd,
+          notes: tailwindNotes,
+        }
+      : undefined,
     finalScript: commands.join("\n"),
   };
 }

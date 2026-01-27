@@ -1,8 +1,9 @@
 import { Icon } from "@iconify/react";
 
-export default function FrameworkCard({ name, icon, type, desc }) {
+export default function FrameworkCard({ name, icon, type, desc, secondaryIcon }) {
     const isFrontend = type === 'frontend' || type === 'fullstack';
     const isBackend = type === 'backend' || type === 'fullstack';
+    const isFullstackCombination = isFrontend && isBackend && secondaryIcon;
 
     return (
         <div className="flex gap-5 p-6 rounded-2xl glass-card border-white/5 hover:border-white/20 hover:bg-white/5 transition-all duration-300 group shadow-2xl relative overflow-hidden">
@@ -24,9 +25,22 @@ export default function FrameworkCard({ name, icon, type, desc }) {
                 )}
             </div>
 
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/5 group-hover:border-white/20 transition-all shrink-0">
-                <Icon icon={icon} className="text-2xl transition-all duration-500" />
-            </div>
+            {/* Icon(s) Display */}
+            {isFullstackCombination ? (
+                <div className="flex items-center gap-2 shrink-0">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/5 group-hover:border-white/20 transition-all">
+                        <Icon icon={icon} className="text-2xl transition-all duration-500" />
+                    </div>
+                    <div className="text-white/30 text-lg">+</div>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/5 group-hover:border-white/20 transition-all">
+                        <Icon icon={secondaryIcon} className="text-2xl transition-all duration-500" />
+                    </div>
+                </div>
+            ) : (
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/5 group-hover:border-white/20 transition-all shrink-0">
+                    <Icon icon={icon} className="text-2xl transition-all duration-500" />
+                </div>
+            )}
 
             <div className="space-y-1.5 text-left pr-8">
                 <h3 className="text-lg font-semibold tracking-tight text-white/95 group-hover:text-white transition-colors">{name}</h3>

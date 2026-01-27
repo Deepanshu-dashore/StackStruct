@@ -1,3 +1,21 @@
+<p align="center">
+  <img src="public/logo.png" alt="Stack Struct Logo" width="120" />
+</p>
+
+<h1 align="center">Stack Struct</h1>
+
+<p align="center">
+  <strong>The fastest path from design to production-ready architecture.</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/your-repo/stargazers"><img src="https://img.shields.io/github/stars/your-repo/stack-struct?style=for-the-badge&color=cyan" alt="Stars" /></a>
+  <a href="https://github.com/your-repo/network/members"><img src="https://img.shields.io/github/forks/your-repo/stack-struct?style=for-the-badge&color=emerald" alt="Forks" /></a>
+  <a href="https://github.com/your-repo/blob/main/LICENSE"><img src="https://img.shields.io/github/license/your-repo/stack-struct?style=for-the-badge&color=blue" alt="License" /></a>
+</p>
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

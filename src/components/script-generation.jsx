@@ -103,8 +103,13 @@ export function ScriptGeneration() {
                                         <span className="text-white/90"> postgresql</span>
                                         {/* Blinking Cursor */}
                                         <motion.div
-                                            animate={{ opacity: [1, 0] }}
-                                            transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
+                                            animate={{ opacity: [1, 1, 0, 0] }}
+                                            transition={{
+                                                duration: 0.8,
+                                                repeat: Infinity,
+                                                times: [0, 0.5, 0.5, 1],
+                                                ease: "linear"
+                                            }}
                                             className="ml-1 w-2.5 h-5 bg-emerald-400/80 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
                                         />
                                     </div>

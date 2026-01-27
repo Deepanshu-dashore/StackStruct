@@ -16,7 +16,7 @@ export function Header() {
                 {!isCreatePage && (
                     <div className="flex items-center gap-2">
                         <Link href="/" className="flex items-center space-x-3 group">
-                            <img src="/logo.png" alt="Stack Struct" className="h-8 w-8 transition-transform group-hover:scale-105" />
+                            <img src="/NewLogo.png" alt="Stack Struct" className="h-8 w-8 transition-transform group-hover:scale-105" />
                             <span className="font-bold text-xl tracking-tight bg-white bg-clip-text">Stack Struct</span>
                         </Link>
                     </div>
@@ -25,15 +25,15 @@ export function Header() {
                 <div className={`flex items-center gap-6 ml-auto`}>
                     {!isCreatePage && (
                         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-                            <Link href="features" className="hover:text-white transition-colors">Features</Link>
-                            <Link href="#how-it-works" className="hover:text-white transition-colors">How it Works</Link>
-                            <Link href="#stack" className="hover:text-white transition-colors">Stack Struct</Link>
+                            <Link href="/features" className="hover:text-white transition-colors">Features</Link>
+                            <Link href="/how-it-works" className="hover:text-white transition-colors">How it Works</Link>
+                            <Link href="/stack" className="hover:text-white transition-colors">Stack Struct</Link>
                         </nav>
                     )}
 
                     <div className={`flex items-center gap-4 ${!isCreatePage ? 'border-l border-white/10 pl-6 ml-2' : ''}`}>
                         <Button variant="ghost" size="sm" asChild className="hidden md:flex text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all rounded-full px-4">
-                            <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                            <a href="https://github.com/Deepanshu-dashore/StackStruct" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                                 <Icons.github className="h-4 w-4" />
                                 <span className={isCreatePage ? 'text-xs' : ''}>GitHub</span>
                             </a>

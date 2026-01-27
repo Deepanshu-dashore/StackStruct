@@ -15,7 +15,7 @@ const mainNavItems = [
 const supportNavItems = [
     { name: 'Documentation', href: '/docs', icon: 'lucide:book-open' },
     { name: 'Support', href: '/support', icon: 'lucide:help-circle' },
-    { name: 'GitHub Support', href: 'https://github.com', icon: 'mdi:github' },
+    { name: 'GitHub Support', href: 'https://github.com/Deepanshu-dashore/StackStruct', icon: 'mdi:github' },
     { name: 'Discord', href: 'https://discord.com', icon: 'ic:baseline-discord' },
 ];
 
@@ -26,7 +26,7 @@ export function Sidebar() {
         <aside className="fixed left-0 top-0 hidden h-screen w-64 flex-col border-r border-white/5 bg-[#020206] lg:flex z-50">
             {/* Branding */}
             <div className="flex h-16 items-center gap-2 px-6 border-b border-white/5">
-                <img src="/logo.png" alt="Stack Struct" className="h-8 w-8" />
+                <img src="/NewLogo.png" alt="Stack Struct" className="h-8 w-8" />
                 <span className="text-lg font-bold tracking-tight text-white">Stack Struct</span>
             </div>
 
