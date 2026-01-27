@@ -64,7 +64,7 @@ export function Hero() {
                 <div className="absolute inset-0 opacity-[0.03] font-mono text-[10px] leading-none select-none p-10 rotate-[-5deg] translate-y-[-10%] scale-110">
                     {Array.from({ length: 70 }).map((_, i) => (
                         <div key={i} className="whitespace-nowrap mb-1">
-                            {`const project = await struct.generate({ frontend: 'nextjs', backend: 'express', auth: 'lucia' }); // Layer ${i} const project = await struct.generate({ frontend: 'nextjs', backend: 'express', auth: 'lucia' }); // Layer ${i}`}
+                            {`const project = await stackStruct.generate({ frontend: 'nextjs', backend: 'express', auth: 'lucia' }); // Layer ${i} const project = await stackStruct.generate({ frontend: 'nextjs', backend: 'express', auth: 'lucia' }); // Layer ${i}`}
                         </div>
                     ))}
                 </div>
@@ -98,8 +98,8 @@ export function Hero() {
                                         {techIndex === -1 ? text : `Generate ${text}`}
                                     </span>
                                     <motion.span
-                                        animate={{ opacity: [1, 0] }}
-                                        transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
+                                        animate={{ opacity: [1, 0, 1] }}
+                                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                                         className="inline-block w-[3px] h-[0.9em] ml-2 bg-linear-to-br from-cyan-500 via-blue-500 to-emerald-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]"
                                     />
                                 </div>
@@ -153,7 +153,7 @@ export function Hero() {
 
                                 <Image
                                     src="/HeroImage.png"
-                                    alt="StackStruct Architecture Visualization"
+                                    alt="Stack Struct Architecture Visualization"
                                     width={1000}
                                     height={1000}
                                     className="object-contain scale-120 drop-shadow-2xl brightness-110"

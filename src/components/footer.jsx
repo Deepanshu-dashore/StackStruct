@@ -7,9 +7,9 @@ export function Footer() {
         <footer className="py-8 border-t border-border/40">
             <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                    <Icons.struct className="h-6 w-6" />
+                    <img src="/logo.png" alt="Stack Struct" className="h-6 w-6" />
                     <p className="text-sm text-muted-foreground">
-                        © {new Date().getFullYear()} Struct v0.1.0. All rights reserved.
+                        © {new Date().getFullYear()} Stack Struct v0.1.0. All rights reserved.
                     </p>
                 </div>
 

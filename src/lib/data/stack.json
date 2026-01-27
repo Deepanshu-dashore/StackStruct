@@ -1,0 +1,66 @@
+{
+  "projectTypes": [
+    { "id": "frontend-backend", "label": "Frontend + Backend", "icon": "lucide:layers" },
+    { "id": "frontend-only", "label": "Frontend only", "icon": "lucide:monitor" },
+    { "id": "backend-only", "label": "Backend only", "icon": "lucide:server" }
+  ],
+  "frontend": [
+    { "id": "nextjs", "label": "Next.js", "icon": "logos:nextjs-icon", "type": "fullstack", "description": "The React Framework for the Web. Optimized for speed and developer experience." },
+    { "id": "react", "label": "React (Vite)", "icon": "logos:react", "type": "frontend", "description": "The most popular library for web and native user interfaces." },
+    { "id": "nuxt", "label": "Nuxt", "icon": "logos:nuxt-icon", "type": "fullstack", "description": "The Intuitive Vue Framework. Hybrid rendering with a great ecosystem." },
+    { "id": "sveltekit", "label": "SvelteKit", "icon": "logos:svelte-icon", "type": "fullstack", "description": "The fastest way to build apps of all sizes with a beautiful development experience." },
+    { "id": "angular", "label": "Angular", "icon": "logos:angular-icon", "type": "frontend", "description": "The modern web developer's platform. Build across all platforms." },
+    { "id": "vue", "label": "Vue", "icon": "logos:vue", "type": "frontend", "description": "The Progressive JavaScript Framework." },
+    { "id": "solidjs", "label": "SolidJS", "icon": "logos:solidjs-icon", "type": "frontend", "description": "Simple and performant reactivity for building user interfaces." }
+  ],
+  "backend": [
+    { "id": "express", "label": "Express", "icon": "logos:express", "type": "backend", "description": "Fast, unopinionated, minimalist web framework for Node.js." },
+    { "id": "nestjs", "label": "NestJS", "icon": "logos:nestjs", "type": "backend", "description": "A progressive Node.js framework for building efficient, reliable and scalable server-side applications." },
+    { "id": "fastify", "label": "Fastify", "icon": "logos:fastify-icon", "type": "backend", "description": "Fast and low overhead web framework for Node.js." },
+    { "id": "hapi", "label": "Hapi", "icon": "logos:hapi", "type": "backend", "description": "A rich framework for building applications and services." },
+    { "id": "koa", "label": "Koa", "icon": "logos:koa", "type": "backend", "description": "Next generation web framework for Node.js." },
+    { "id": "go", "label": "Go", "icon": "logos:go", "type": "backend", "description": "Build simple, secure, and maintainable systems with Google's powerful language." },
+    { "id": "rust", "label": "Rust", "icon": "fa7-brands:rust", "type": "backend", "description": "Empowering everyone to build reliable and efficient software." },
+    { "id": "laravel", "label": "Laravel", "icon": "logos:laravel", "type": "fullstack", "description": "The PHP Framework for Web Artisans. Elegant, expressive, and fun." },
+    { "id": "rails", "label": "Rails", "icon": "logos:rails", "type": "fullstack", "description": "A complete framework that includes everything needed to create database-backed web applications." },
+    { "id": "phoenix", "label": "Phoenix", "icon": "logos:phoenix", "type": "fullstack", "description": "Peace of mind from prototype to production with Elixir." }
+  ],
+  "languages": [
+    { "id": "typescript", "label": "TypeScript", "icon": "logos:typescript-icon" },
+    { "id": "javascript", "label": "JavaScript", "icon": "logos:javascript" }
+  ],
+  "styling": [
+    { "id": "tailwind", "label": "Tailwind CSS", "icon": "logos:tailwindcss-icon" },
+    { "id": "css-modules", "label": "CSS Modules", "icon": "lucide:file-code" },
+    { "id": "styled-components", "label": "Styled Components", "icon": "logos:styled-components" },
+    { "id": "none", "label": "None", "icon": "lucide:x" }
+  ],
+  "componentLibraries": [
+    { "id": "shadcn", "label": "ShadCN/UI", "icon": "simple-icons:shadcnui" },
+    { "id": "mui", "label": "Material UI", "icon": "logos:material-ui" },
+    { "id": "chakra", "label": "Chakra UI", "icon": "logos:chakra-ui" },
+    { "id": "none", "label": "None", "icon": "lucide:x" }
+  ],
+  "folderPresets": [
+    { "id": "minimal", "label": "Minimal", "icon": "lucide:minus" },
+    { "id": "standard", "label": "Standard", "icon": "lucide:check" },
+    { "id": "advanced", "label": "Advanced", "icon": "lucide:plus" }
+  ],
+  "auth": [
+    { "id": "none", "label": "None", "icon": "lucide:x" },
+    { "id": "jwt", "label": "JWT Auth Routes", "icon": "logos:jwt-icon" },
+    { "id": "oauth", "label": "OAuth 2.0 Stubs", "icon": "lucide:shield-lock" }
+  ],
+  "database": [
+    { "id": "none", "label": "None", "icon": "lucide:x" },
+    { "id": "mongodb", "label": "MongoDB", "icon": "logos:mongodb-icon" },
+    { "id": "postgresql", "label": "PostgreSQL", "icon": "logos:postgresql" },
+    { "id": "sqlite", "label": "SQLite", "icon": "logos:sqlite" }
+  ],
+  "orm": [
+    { "id": "none", "label": "None", "icon": "lucide:x" },
+    { "id": "prisma", "label": "Prisma", "icon": "logos:prisma" },
+    { "id": "mongoose", "label": "Mongoose", "icon": "logos:mongoose" },
+    { "id": "drizzle", "label": "Drizzle", "icon": "logos:drizzle-icon" }
+  ]
+}

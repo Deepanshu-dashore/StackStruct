@@ -7,7 +7,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata = {
-    title: 'Struct - Build Your Stack in Seconds',
+    title: 'Stack Struct - Build Your Project in Seconds',
     description: 'The Project Generator for Production-Ready Code.',
 };
 

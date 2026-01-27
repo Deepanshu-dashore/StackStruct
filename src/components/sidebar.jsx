@@ -26,8 +26,8 @@ export function Sidebar() {
         <aside className="fixed left-0 top-0 hidden h-screen w-64 flex-col border-r border-white/5 bg-[#020206] lg:flex z-50">
             {/* Branding */}
             <div className="flex h-16 items-center gap-2 px-6 border-b border-white/5">
-                <img src="/logo.png" alt="StackStruct" className="h-8 w-8" />
-                <span className="text-lg font-bold tracking-tight text-white">StackStruct</span>
+                <img src="/logo.png" alt="Stack Struct" className="h-8 w-8" />
+                <span className="text-lg font-bold tracking-tight text-white">Stack Struct</span>
             </div>
 
             <div className="flex flex-1 flex-col justify-between p-4 px-6 overflow-y-auto">

@@ -13,7 +13,7 @@ export default function FolderStructure() {
                         Opinionated Project Structure
                     </h2>
                     <p className="text-lg text-muted-foreground/40 leading-relaxed font-light">
-                        Struct generates clean, scalable folder structures tailored to
+                        Stack Struct generates clean, scalable folder structures tailored to
                         each framework and preset. We follow industry best practices for every stack.
                     </p>
                 </div>

@@ -3,10 +3,20 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Aurora from './ui/Aurora';
+import { ArrowRight } from 'lucide-react/dist/cjs/lucide-react';
 
 export function CTASection() {
     return (
-        <section className="py-32 relative border-t border-white/5">
+        <section className="py-28 relative border-t border-white/5">
+            <div className='absolute inset-0 rotate-180 -bottom-32'>
+                <Aurora
+                    colorStops={["#7cff67", "#B19EEF", "#5227FF"]}
+                    blend={0.5}
+                    amplitude={1.0}
+                    speed={1}
+                />
+            </div>
             <div className="absolute inset-0 bg-linear-to-b from-transparent via-cyan-500/5 to-transparent pointer-events-none" />
             <div className="container px-4 md:px-6 relative z-10">
                 <div className="flex flex-col items-center justify-center space-y-8 text-center">
@@ -34,10 +44,10 @@ export function CTASection() {
                         <Link href="/create">
                             <Button
                                 size="lg"
-                                className="h-16 px-12 text-xl bg-white/5 hover:bg-white/10 text-white border border-cyan-500/50 backdrop-blur-xl transition-all shadow-[0_0_30_px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50_px_rgba(6,182,212,0.5)] rounded-full group font-semibold cursor-pointer"
+                                className="inline-flex gap-3 items-center justify-center h-14 rounded-full bg-white px-10 text-sm font-bold text-black hover:bg-white/90 transition-all hover:scale-[1.05] active:scale-[0.98] shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                             >
                                 Create Your Project
-                                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                                <ArrowRight className="h-5 w-5 text-inherit animation-pulse " />
                             </Button>
                         </Link>
                     </motion.div>

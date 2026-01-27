@@ -16,8 +16,8 @@ export function Header() {
                 {!isCreatePage && (
                     <div className="flex items-center gap-2">
                         <Link href="/" className="flex items-center space-x-3 group">
-                            <img src="/logo.png" alt="StackStruct" className="h-8 w-8 transition-transform group-hover:scale-105" />
-                            <span className="font-bold text-xl tracking-tight bg-white bg-clip-text">Struct</span>
+                            <img src="/logo.png" alt="Stack Struct" className="h-8 w-8 transition-transform group-hover:scale-105" />
+                            <span className="font-bold text-xl tracking-tight bg-white bg-clip-text">Stack Struct</span>
                         </Link>
                     </div>
                 )}
@@ -27,7 +27,7 @@ export function Header() {
                         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
                             <Link href="features" className="hover:text-white transition-colors">Features</Link>
                             <Link href="#how-it-works" className="hover:text-white transition-colors">How it Works</Link>
-                            <Link href="#stack" className="hover:text-white transition-colors">Stack</Link>
+                            <Link href="#stack" className="hover:text-white transition-colors">Stack Struct</Link>
                         </nav>
                     )}
 
@@ -38,7 +38,7 @@ export function Header() {
                                 <span className={isCreatePage ? 'text-xs' : ''}>GitHub</span>
                             </a>
                         </Button>
-                        <ThemeToggle />
+                        {pathname !== '/' && <ThemeToggle />}
                         {!isCreatePage && (
                             <Link href="/create">
                                 <Button size="sm" className="bg-white text-black hover:bg-white/90 rounded-full px-6 font-semibold transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
