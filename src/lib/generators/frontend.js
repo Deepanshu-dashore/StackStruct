@@ -39,7 +39,9 @@ const htmlGenerator = {
         .join("\n");
       const scripts = links
         .filter((l) => l.rel === "script")
-        .map((l) => `<script src="${l.href}"${l.defer ? " defer" : ""}></script>`) // js
+        .map(
+          (l) => `<script src="${l.href}"${l.defer ? " defer" : ""}></script>`,
+        ) // js
         .join("\n");
       return `<!doctype html>
 <html lang="en">
@@ -60,10 +62,23 @@ ${scripts}
 
     if (presetName === "minimal") {
       children.push(
-        getFile("index.html", makeIndex([{ rel: "stylesheet", href: "./style.css" }, { rel: "script", href: "./script.js", defer: true }])),
+        getFile(
+          "index.html",
+          makeIndex([
+            { rel: "stylesheet", href: "./style.css" },
+            { rel: "script", href: "./script.js", defer: true },
+          ]),
+        ),
       );
-      children.push(getFile("style.css", "/* Global styles */\nbody { font-family: system-ui, sans-serif; background:#1E1E2E; color:#CDD6F4; }"));
-      children.push(getFile("script.js", "// Page logic\nconsole.log('Hello HTML');"));
+      children.push(
+        getFile(
+          "style.css",
+          "/* Global styles */\nbody { font-family: system-ui, sans-serif; background:#1E1E2E; color:#CDD6F4; }",
+        ),
+      );
+      children.push(
+        getFile("script.js", "// Page logic\nconsole.log('Hello HTML');"),
+      );
       return children;
     }
 
@@ -72,12 +87,18 @@ ${scripts}
       children.push(
         getFolder("modules", [
           getFolder("auth", [
-            getFile("auth.html", `<!doctype html>\n<html><head>\n<link rel=\"stylesheet\" href=\"/shared/css/base.css\">\n<link rel=\"stylesheet\" href=\"./auth.css\">\n</head><body>\n<section class=\"auth\">Auth</section>\n<script src=\"/shared/js/utils.js\"></script>\n<script src=\"./auth.js\" defer></script>\n</body></html>`),
+            getFile(
+              "auth.html",
+              `<!doctype html>\n<html><head>\n<link rel=\"stylesheet\" href=\"/shared/css/base.css\">\n<link rel=\"stylesheet\" href=\"./auth.css\">\n</head><body>\n<section class=\"auth\">Auth</section>\n<script src=\"/shared/js/utils.js\"></script>\n<script src=\"./auth.js\" defer></script>\n</body></html>`,
+            ),
             getFile("auth.css", ".auth { padding: 1rem; }"),
             getFile("auth.js", "console.log('auth module');"),
           ]),
           getFolder("dashboard", [
-            getFile("dashboard.html", `<!doctype html>\n<html><head>\n<link rel=\"stylesheet\" href=\"/shared/css/base.css\">\n<link rel=\"stylesheet\" href=\"./dashboard.css\">\n</head><body>\n<section class=\"dashboard\">Dashboard</section>\n<script src=\"/shared/js/utils.js\"></script>\n<script src=\"./dashboard.js\" defer></script>\n</body></html>`),
+            getFile(
+              "dashboard.html",
+              `<!doctype html>\n<html><head>\n<link rel=\"stylesheet\" href=\"/shared/css/base.css\">\n<link rel=\"stylesheet\" href=\"./dashboard.css\">\n</head><body>\n<section class=\"dashboard\">Dashboard</section>\n<script src=\"/shared/js/utils.js\"></script>\n<script src=\"./dashboard.js\" defer></script>\n</body></html>`,
+            ),
             getFile("dashboard.css", ".dashboard { padding: 1rem; }"),
             getFile("dashboard.js", "console.log('dashboard module');"),
           ]),
@@ -85,8 +106,17 @@ ${scripts}
       );
       children.push(
         getFolder("shared", [
-          getFolder("css", [getFile("base.css", "/* base */"), getFile("layout.css", "/* layout */")]),
-          getFolder("js", [getFile("utils.js", "export const q = (s)=>document.querySelector(s);"), getFile("constants.js", "export const APP='APP';")]),
+          getFolder("css", [
+            getFile("base.css", "/* base */"),
+            getFile("layout.css", "/* layout */"),
+          ]),
+          getFolder("js", [
+            getFile(
+              "utils.js",
+              "export const q = (s)=>document.querySelector(s);",
+            ),
+            getFile("constants.js", "export const APP='APP';"),
+          ]),
         ]),
       );
       children.push(
@@ -97,17 +127,39 @@ ${scripts}
     }
 
     // standard (default)
-    children.push(getFile("index.html", makeIndex([{ rel: "stylesheet", href: "/css/main.css" }, { rel: "script", href: "/js/main.js", defer: true }])));
     children.push(
-      getFolder("pages", [getFile("about.html", "<h2>About</h2>"), getFile("contact.html", "<h2>Contact</h2>")]),
+      getFile(
+        "index.html",
+        makeIndex([
+          { rel: "stylesheet", href: "/css/main.css" },
+          { rel: "script", href: "/js/main.js", defer: true },
+        ]),
+      ),
     );
     children.push(
-      getFolder("css", [getFile("main.css", "/* global */"), getFile("components.css", "/* reusable components */")]),
+      getFolder("pages", [
+        getFile("about.html", "<h2>About</h2>"),
+        getFile("contact.html", "<h2>Contact</h2>"),
+      ]),
     );
     children.push(
-      getFolder("js", [getFile("main.js", "console.log('main');"), getFile("api.js", "export async function get(){ return fetch('/api').then(r=>r.json()); }")]),
+      getFolder("css", [
+        getFile("main.css", "/* global */"),
+        getFile("components.css", "/* reusable components */"),
+      ]),
     );
-    children.push(getFolder("assets", [getFolder("images"), getFolder("icons")]));
+    children.push(
+      getFolder("js", [
+        getFile("main.js", "console.log('main');"),
+        getFile(
+          "api.js",
+          "export async function get(){ return fetch('/api').then(r=>r.json()); }",
+        ),
+      ]),
+    );
+    children.push(
+      getFolder("assets", [getFolder("images"), getFolder("icons")]),
+    );
     return children;
   },
 };
@@ -116,7 +168,8 @@ ${scripts}
 const vueGenerator = {
   build: (presetName, config) => {
     const children = [];
-    const isTS = (config.frontend?.language || config.language) === "typescript";
+    const isTS =
+      (config.frontend?.language || config.language) === "typescript";
     const useTailwind = config.styling === "tailwind";
     const ext = isTS ? "ts" : "js";
 
@@ -134,16 +187,40 @@ const vueGenerator = {
     // Build src children once per preset
     let srcChildren = [];
     if (presetName === "minimal") {
-      srcChildren = [getFile("App.vue", isTS ? appVueTS : appVueJS), getFile(`main.${ext}`, mainBase([]))];
+      srcChildren = [
+        getFile("App.vue", isTS ? appVueTS : appVueJS),
+        getFile(`main.${ext}`, mainBase([])),
+      ];
     } else if (presetName === "advanced") {
       srcChildren = [
         getFolder("modules", [
-          getFolder("auth", [getFolder("components"), getFolder("pages"), getFolder("services")]),
-          getFolder("dashboard", [getFolder("components"), getFolder("pages"), getFolder("services")]),
+          getFolder("auth", [
+            getFolder("components"),
+            getFolder("pages"),
+            getFolder("services"),
+          ]),
+          getFolder("dashboard", [
+            getFolder("components"),
+            getFolder("pages"),
+            getFolder("services"),
+          ]),
         ]),
-        getFolder("shared", [getFolder("components"), getFolder("composables"), getFolder("utils")]),
-        getFolder("router", [getFile(`index.${ext}`, isTS ? routerIndexTS : routerIndexJS)]),
-        ...(isTS ? [getFolder("types", [getFile("api.ts", "export type ApiResponse = unknown"), getFile("user.ts", "export type User = { id: string }")])] : []),
+        getFolder("shared", [
+          getFolder("components"),
+          getFolder("composables"),
+          getFolder("utils"),
+        ]),
+        getFolder("router", [
+          getFile(`index.${ext}`, isTS ? routerIndexTS : routerIndexJS),
+        ]),
+        ...(isTS
+          ? [
+              getFolder("types", [
+                getFile("api.ts", "export type ApiResponse = unknown"),
+                getFile("user.ts", "export type User = { id: string }"),
+              ]),
+            ]
+          : []),
         getFile("App.vue", isTS ? appVueTS : appVueJS),
         getFile(`main.${ext}`, mainBase(["import router from './router'"])),
       ];
@@ -152,7 +229,9 @@ const vueGenerator = {
       srcChildren = [
         getFolder("components"),
         getFolder("pages"),
-        getFolder("router", [getFile(`index.${ext}`, isTS ? routerIndexTS : routerIndexJS)]),
+        getFolder("router", [
+          getFile(`index.${ext}`, isTS ? routerIndexTS : routerIndexJS),
+        ]),
         getFile("App.vue", isTS ? appVueTS : appVueJS),
         getFile(`main.${ext}`, mainBase(["import router from './router'"])),
       ];
@@ -175,8 +254,19 @@ const vueGenerator = {
     }
 
     if (isTS) {
-      children.push(getFile("tsconfig.json", JSON.stringify({ compilerOptions: { strict: true, jsx: "preserve" } }, null, 2)));
-      children.push(getFile("env.d.ts", "/// <reference types=\"vite/client\" />"));
+      children.push(
+        getFile(
+          "tsconfig.json",
+          JSON.stringify(
+            { compilerOptions: { strict: true, jsx: "preserve" } },
+            null,
+            2,
+          ),
+        ),
+      );
+      children.push(
+        getFile("env.d.ts", '/// <reference types="vite/client" />'),
+      );
     }
 
     return children;
@@ -195,24 +285,59 @@ const angularGenerator = {
     let srcChildren = [];
     if (presetName === "minimal") {
       srcChildren = [
-        getFolder("app", [getFile("app.component.ts", appComponentTs), getFile("app.component.html", appComponentHtml), getFile("app.component.css", ":root{}")]),
-        getFile("main.ts", "import { bootstrapApplication } from '@angular/platform-browser';\nimport { AppComponent } from './app/app.component';\nbootstrapApplication(AppComponent);"),
-        getFile("index.html", `<!doctype html><html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><title>${config.projectName}</title></head><body><app-root></app-root></body></html>`),
+        getFolder("app", [
+          getFile("app.component.ts", appComponentTs),
+          getFile("app.component.html", appComponentHtml),
+          getFile("app.component.css", ":root{}"),
+        ]),
+        getFile(
+          "main.ts",
+          "import { bootstrapApplication } from '@angular/platform-browser';\nimport { AppComponent } from './app/app.component';\nbootstrapApplication(AppComponent);",
+        ),
+        getFile(
+          "index.html",
+          `<!doctype html><html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><title>${config.projectName}</title></head><body><app-root></app-root></body></html>`,
+        ),
       ];
     } else if (presetName === "advanced") {
       srcChildren = [
         getFolder("app", [
           getFolder("modules", [
-            getFolder("auth", [getFolder("pages"), getFolder("components"), getFolder("services"), getFile("auth.routes.ts", "export const authRoutes = []")]),
-            getFolder("dashboard", [getFolder("pages"), getFolder("components"), getFolder("services"), getFile("dashboard.routes.ts", "export const dashboardRoutes = []")]),
+            getFolder("auth", [
+              getFolder("pages"),
+              getFolder("components"),
+              getFolder("services"),
+              getFile("auth.routes.ts", "export const authRoutes = []"),
+            ]),
+            getFolder("dashboard", [
+              getFolder("pages"),
+              getFolder("components"),
+              getFolder("services"),
+              getFile(
+                "dashboard.routes.ts",
+                "export const dashboardRoutes = []",
+              ),
+            ]),
           ]),
-          getFolder("shared", [getFolder("components"), getFolder("pipes"), getFolder("directives"), getFolder("services")]),
-          getFolder("core", [getFolder("guards"), getFolder("interceptors"), getFolder("services")]),
+          getFolder("shared", [
+            getFolder("components"),
+            getFolder("pipes"),
+            getFolder("directives"),
+            getFolder("services"),
+          ]),
+          getFolder("core", [
+            getFolder("guards"),
+            getFolder("interceptors"),
+            getFolder("services"),
+          ]),
           getFile("app.routes.ts", "export const routes = []"),
           getFile("app.component.ts", appComponentTs),
           getFile("app.component.html", appComponentHtml),
         ]),
-        getFile("main.ts", "import { bootstrapApplication } from '@angular/platform-browser';\nimport { AppComponent } from './app/app.component';\nbootstrapApplication(AppComponent);"),
+        getFile(
+          "main.ts",
+          "import { bootstrapApplication } from '@angular/platform-browser';\nimport { AppComponent } from './app/app.component';\nbootstrapApplication(AppComponent);",
+        ),
       ];
     } else {
       // standard
@@ -225,14 +350,25 @@ const angularGenerator = {
           getFile("app.component.ts", appComponentTs),
           getFile("app.component.html", appComponentHtml),
         ]),
-        getFile("main.ts", "import { bootstrapApplication } from '@angular/platform-browser';\nimport { AppComponent } from './app/app.component';\nbootstrapApplication(AppComponent);"),
-        getFile("index.html", `<!doctype html><html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><title>${config.projectName}</title></head><body><app-root></app-root></body></html>`),
+        getFile(
+          "main.ts",
+          "import { bootstrapApplication } from '@angular/platform-browser';\nimport { AppComponent } from './app/app.component';\nbootstrapApplication(AppComponent);",
+        ),
+        getFile(
+          "index.html",
+          `<!doctype html><html><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><title>${config.projectName}</title></head><body><app-root></app-root></body></html>`,
+        ),
       ];
     }
 
     if (useTailwind) {
       // Angular Tailwind v4.1 via PostCSS plugin
-      children.push(getFile(".postcssrc.json", '{\n  "plugins": {\n    "@tailwindcss/postcss": {}\n  }\n}'));
+      children.push(
+        getFile(
+          ".postcssrc.json",
+          '{\n  "plugins": {\n    "@tailwindcss/postcss": {}\n  }\n}',
+        ),
+      );
       srcChildren.push(getFile("styles.css", '@import "tailwindcss";'));
     }
 
@@ -245,34 +381,40 @@ const angularGenerator = {
 // Astro Generator
 const astroGenerator = {
   build: (presetName, config) => {
-    const useTailwind = config.styling === 'tailwind';
+    const useTailwind = config.styling === "tailwind";
     const children = [];
 
-    const indexAstro = `---\n${useTailwind ? "import '../styles.css'" : ''}\n---\n<html>\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    <title>${config.projectName}</title>\n  </head>\n  <body>\n    <main class=\"p-6\"><h1>${config.projectName}</h1></main>\n  </body>\n</html>`;
+    const indexAstro = `---\n${useTailwind ? "import '../styles.css'" : ""}\n---\n<html>\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    <title>${config.projectName}</title>\n  </head>\n  <body>\n    <main class=\"p-6\"><h1>${config.projectName}</h1></main>\n  </body>\n</html>`;
 
-    const srcChildren = [getFolder('pages', [getFile('index.astro', indexAstro)])];
+    const srcChildren = [
+      getFolder("pages", [getFile("index.astro", indexAstro)]),
+    ];
     if (useTailwind) {
-      srcChildren.push(getFile('styles.css', '@import "tailwindcss";'));
+      srcChildren.push(getFile("styles.css", '@import "tailwindcss";'));
     }
 
-    children.push(getFolder('src', srcChildren));
+    children.push(getFolder("src", srcChildren));
 
     const astroCfg = useTailwind
       ? `// @ts-check\nimport { defineConfig } from 'astro/config'\nimport tailwindcss from '@tailwindcss/vite'\n\nexport default defineConfig({\n  vite: {\n    plugins: [tailwindcss()],\n  },\n})`
       : `// @ts-check\nimport { defineConfig } from 'astro/config'\nexport default defineConfig({})`;
 
-    children.push(getFile('astro.config.mjs', astroCfg));
+    children.push(getFile("astro.config.mjs", astroCfg));
 
     const pkg = {
-      name: config.projectName + '-astro',
+      name: config.projectName + "-astro",
       private: true,
-      dependencies: { astro: 'latest' },
+      dependencies: { astro: "latest" },
       devDependencies: {},
     };
     if (useTailwind) {
-      pkg.devDependencies = { ...pkg.devDependencies, tailwindcss: 'latest', '@tailwindcss/vite': 'latest' };
+      pkg.devDependencies = {
+        ...pkg.devDependencies,
+        tailwindcss: "latest",
+        "@tailwindcss/vite": "latest",
+      };
     }
-    children.push(getFile('package.json', JSON.stringify(pkg, null, 2)));
+    children.push(getFile("package.json", JSON.stringify(pkg, null, 2)));
 
     return children;
   },
@@ -280,7 +422,7 @@ const astroGenerator = {
 
 const nextjsGenerator = {
   build: (preset, config) => {
-    const useTailwind = config.styling === 'tailwind';
+    const useTailwind = config.styling === "tailwind";
     const children = [];
 
     children.push(
@@ -295,9 +437,9 @@ const nextjsGenerator = {
         ),
         getFile(
           "globals.css",
-          useTailwind ? "@import \"tailwindcss\";" : "/* global styles */",
+          useTailwind ? '@import "tailwindcss";' : "/* global styles */",
         ),
-      ])
+      ]),
     );
     children.push(getFolder("components", [getFolder("ui")]));
     children.push(getFolder("lib", [getFile("utils.ts")]));
@@ -322,7 +464,7 @@ const nextjsGenerator = {
       children.push(
         getFile(
           "postcss.config.mjs",
-          "const config = {\n  plugins: {\n    \"@tailwindcss/postcss\": {},\n  },\n};\nexport default config;",
+          'const config = {\n  plugins: {\n    "@tailwindcss/postcss": {},\n  },\n};\nexport default config;',
         ),
       );
     }
@@ -351,8 +493,9 @@ const nextjsGenerator = {
 const reactGenerator = {
   build: (preset, config) => {
     const children = [];
-    const isTS = (config.frontend?.language || config.language) !== 'javascript';
-    const useTailwind = config.styling === 'tailwind';
+    const isTS =
+      (config.frontend?.language || config.language) !== "javascript";
+    const useTailwind = config.styling === "tailwind";
 
     // Build based on preset folders
     preset.folders.forEach((folder) => {
@@ -388,7 +531,13 @@ const reactGenerator = {
             devDependencies: {
               vite: "latest",
               ...(isTS ? { typescript: "latest" } : {}),
-              ...(useTailwind ? { tailwindcss: "latest", "@tailwindcss/vite": "latest", "@vitejs/plugin-react": "latest" } : { "@vitejs/plugin-react": "latest" }),
+              ...(useTailwind
+                ? {
+                    tailwindcss: "latest",
+                    "@tailwindcss/vite": "latest",
+                    "@vitejs/plugin-react": "latest",
+                  }
+                : { "@vitejs/plugin-react": "latest" }),
             },
           },
           null,
@@ -424,12 +573,13 @@ const getPreset = (name) => {
 };
 
 export function generateFrontendStructure(config) {
-  const presetName = config.frontend?.folderPreset || config.folderPreset || 'standard';
-  const frameworkId = config.frontend?.framework || config.frontend || 'react';
+  const presetName =
+    config.frontend?.folderPreset || config.folderPreset || "standard";
+  const frameworkId = config.frontend?.framework || config.frontend || "react";
   const generator = frameworks[frameworkId] || reactGenerator;
 
   // For React/Next use object presets; others use name
-  if (frameworkId === 'react' || frameworkId === 'nextjs') {
+  if (frameworkId === "react" || frameworkId === "nextjs") {
     const presetObj = getPreset(presetName);
     return generator.build(presetObj, config);
   }
