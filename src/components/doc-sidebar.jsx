@@ -10,6 +10,7 @@ const docNavItems = [
         title: "Getting Started",
         items: [
             { name: "Introduction", href: "/doc", icon: "lucide:book-open" },
+            { name: "How it Works", href: "/doc/how-it-works", icon: "lucide:settings" },
             { name: "Installation", href: "/doc/installation", icon: "lucide:terminal" },
             { name: "Project Structure", href: "/doc/structure", icon: "lucide:folder-tree" },
         ],

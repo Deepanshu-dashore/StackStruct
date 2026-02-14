@@ -11,11 +11,9 @@ export default function InstallationPage() {
                 animate={{ opacity: 1 }}
                 className="space-y-4"
             >
-                <div className="flex items-center gap-2 text-white/50 text-[12.25px] font-medium tracking-wide uppercase">
-                    <Icon icon="ant-design:right-outlined" className="h-4 w-4" />
-                    Docs
-                    <Icon icon="ant-design:right-outlined" className="h-4 w-4" />
-                    Installation
+                <div className="flex items-center gap-2 text-cyan-500 text-sm font-medium tracking-wide uppercase">
+                    <Icon icon="lucide:terminal" className="h-4 w-4" />
+                    Docs / Installation
                 </div>
                 <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Installation</h1>
                 <p className="text-xl text-gray-400/70 font-light leading-relaxed">
@@ -68,6 +66,13 @@ export default function InstallationPage() {
                         Note: Our scripts currently require a bash-compatible environment. If you are on Windows, please use Git Bash or WSL (Windows Subsystem for Linux) for the best experience.
                     </p>
                 </div>
+
+                <section className="space-y-6 pt-8 border-t border-white/5">
+                    <h2 className="text-2xl font-semibold">Ready to dive deeper?</h2>
+                    <p className="text-gray-400 font-light text-lg italic">
+                        Want to know what happens under the hood when you click "Generate"? Check out our <a href="/doc/how-it-works" className="text-cyan-400 hover:text-cyan-300 transition-colors font-medium">How it Works</a> guide.
+                    </p>
+                </section>
             </div>
         </div>
     );

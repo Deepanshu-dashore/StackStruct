@@ -75,6 +75,10 @@ export default function DocIntroductionPage() {
                         <h4 className="font-bold text-white mb-1">Installation Guide</h4>
                         <p className="text-sm text-white/40">Step-by-step environment setup.</p>
                     </a>
+                    <a href="/doc/how-it-works" className="p-6 rounded-xl border border-white/5 hover:bg-white/2 transition-all text-cyan-400">
+                        <h4 className="font-bold text-white mb-1">How it Works</h4>
+                        <p className="text-sm text-white/40">Understand the generation engine.</p>
+                    </a>
                     <a href="/doc/structure" className="p-6 rounded-xl border border-white/5 hover:bg-white/2 transition-all">
                         <h4 className="font-bold text-white mb-1">Architecture</h4>
                         <p className="text-sm text-white/40">Our folder structure philosophy.</p>
