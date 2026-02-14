@@ -1,5 +1,8 @@
 import { reactFramework } from "../frameworks/frontend/react";
 import { nextFramework } from "../frameworks/frontend/nextjs";
+import { htmlFramework } from "../frameworks/frontend/html-css-js";
+import { vueFramework } from "../frameworks/frontend/vue";
+import { astroFramework } from "../frameworks/frontend/astro";
 import { injectTailwind } from "../features/frontend/tailwind";
 import { getFolder, getFile } from "../utils/tree-nodes";
 
@@ -14,6 +17,12 @@ export function frontendPipeline(frontendConfig, fullConfig) {
     nodes = reactFramework(frontendConfig);
   } else if (frontendConfig.framework === "nextjs") {
     nodes = nextFramework(frontendConfig);
+  } else if (frontendConfig.framework === "vanilla") {
+    nodes = htmlFramework(frontendConfig);
+  } else if (frontendConfig.framework === "vue") {
+    nodes = vueFramework(frontendConfig);
+  } else if (frontendConfig.framework === "astro") {
+    nodes = astroFramework(frontendConfig);
   }
 
   // 2. Apply Preset (Folder Philosophy)

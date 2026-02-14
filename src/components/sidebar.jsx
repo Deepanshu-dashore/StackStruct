@@ -9,14 +9,13 @@ import { Icons } from './icons';
 const mainNavItems = [
     { name: 'Home', href: '/', icon: 'lucide:home' },
     { name: 'Templates', href: '/templates', icon: 'lucide:layout-template' },
-    { name: 'Settings', href: '/settings', icon: 'lucide:settings' },
 ];
 
 const supportNavItems = [
     { name: 'Documentation', href: '/docs', icon: 'lucide:book-open' },
     { name: 'Support', href: '/support', icon: 'lucide:help-circle' },
     { name: 'GitHub Support', href: 'https://github.com/Deepanshu-dashore/StackStruct', icon: 'mdi:github' },
-    { name: 'Discord', href: 'https://discord.com', icon: 'ic:baseline-discord' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/deepanshu-dashore', icon: 'lucide:linkedin' },
 ];
 
 export function Sidebar() {

@@ -16,13 +16,13 @@ export function Footer() {
                 <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
                     <nav className="flex items-center gap-6">
                         <Link
-                            href="#"
+                            href="/doc"
                             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
                             Documentation
                         </Link>
                         <Link
-                            href="#"
+                            href="/support"
                             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
                             Support
