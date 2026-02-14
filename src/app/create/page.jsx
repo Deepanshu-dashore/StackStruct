@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { generateFileTree, generateScript } from '@/lib/generators';
+import { generateProject } from '@/lib/engine/orchestrator';
+import { generateBashScript } from '@/lib/engine/generators/bash';
 import { ConfigPanel } from '@/components/config-panel';
 import { PreviewPanel } from '@/components/preview-panel';
 import { Sidebar } from '@/components/sidebar';
@@ -16,7 +17,7 @@ export default function CreatePage() {
         projectType: 'frontend-backend',
         monorepo: true,
         frontend: {
-            framework: 'nextjs',
+            framework: 'react',
             language: 'typescript',
             style: 'tailwind',
             components: 'shadcn',
@@ -34,8 +35,8 @@ export default function CreatePage() {
         },
     });
 
-    const fileTree = useMemo(() => generateFileTree(config), [config]);
-    const script = useMemo(() => generateScript(fileTree, config), [fileTree, config]);
+    const fileTree = useMemo(() => generateProject(config), [config]);
+    const script = useMemo(() => generateBashScript(fileTree, config), [fileTree, config]);
 
     return (
         <div className="flex min-h-screen bg-[#020206] text-white">

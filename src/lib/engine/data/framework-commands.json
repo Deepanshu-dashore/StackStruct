@@ -1,0 +1,74 @@
+{
+  "frontend": {
+    "react-vite": {
+      "scaffold": "npm create vite@latest {{projectName}} -- --template react{{#typescript}}-ts{{/typescript}}",
+      "install": "cd {{projectName}} && npm install"
+    },
+    "nextjs": {
+      "scaffold": "npx create-next-app@latest {{projectName}} --typescript={{typescript}} --eslint --tailwind --src-dir --app --import-alias \"@/*\" --use-npm --yes --no-git",
+      "install": "cd {{projectName}}"
+    },
+    "vue-vite": {
+      "scaffold": "npm create vite@latest {{projectName}} -- --template vue{{#typescript}}-ts{{/typescript}}",
+      "install": "cd {{projectName}} && npm install"
+    },
+    "astro": {
+      "scaffold": "npm create astro@latest {{projectName}} -- --yes --no-git --no-install",
+      "install": "cd {{projectName}} && npm install"
+    },
+    "angular": {
+      "scaffold": "npx @angular/cli new {{projectName}} --routing --style=css --strict={{typescript}} --skip-git --skip-install --defaults",
+      "install": "cd {{projectName}}"
+    }
+  },
+  "backend": {
+    "express": {
+      "scaffold": "mkdir {{projectName}} && cd {{projectName}} && npm init -y",
+      "install": "npm install express cors dotenv"
+    },
+    "nestjs": {
+      "scaffold": "npx @nestjs/cli new {{projectName}} --package-manager npm --skip-git",
+      "install": "cd {{projectName}}"
+    },
+    "fastify": {
+      "scaffold": "mkdir {{projectName}} && cd {{projectName}} && npm init -y",
+      "install": "npm install fastify"
+    }
+  },
+  "features": {
+    "tailwind": {
+      "dependencies": [
+        "tailwindcss",
+        "@tailwindcss/vite"
+      ],
+      "postInstall": []
+    },
+    "prisma": {
+      "dependencies": [
+        "@prisma/client"
+      ],
+      "devDependencies": [
+        "prisma"
+      ],
+      "postInstall": [
+        "npx prisma init"
+      ]
+    },
+    "mongoose": {
+      "dependencies": [
+        "mongoose"
+      ]
+    },
+    "jwt": {
+      "dependencies": [
+        "jsonwebtoken",
+        "bcryptjs"
+      ]
+    },
+    "multer": {
+      "dependencies": [
+        "multer"
+      ]
+    }
+  }
+}

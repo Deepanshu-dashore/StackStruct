@@ -1,6 +1,6 @@
 {
   "projectTypes": [
-    { "id": "fullstack", "label": "Full Stack", "icon": "lucide:layers" },
+    { "id": "frontend-backend", "label": "Full Stack", "icon": "lucide:layers" },
     { "id": "frontend-only", "label": "Frontend Only", "icon": "lucide:monitor" },
     { "id": "backend-only", "label": "Backend Only", "icon": "lucide:server" }
   ],

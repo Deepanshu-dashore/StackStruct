@@ -4,116 +4,174 @@ import { generateDirs, generateFiles } from "./helpers";
  * Generates the full bash script based on the file tree and config.
  * @param {import('./helpers').FolderNode} tree
  * @param {import('./validation').AppConfig} config
- * @returns {Object}
  */
 export function generateScript(tree, config) {
   const commands = [];
+  const safeProjectName = sanitizeName(config.projectName);
 
-  commands.push("#!/usr/bin/env bash");
-  commands.push("# StackStruct Project Generation Script");
-  commands.push("# Generated on " + new Date().toISOString());
-  commands.push("set -e"); // Exit on error
-  commands.push("");
+  const dirCommands = generateDirs(tree, "");
+  const fileCommands = generateFiles(tree, "");
 
-  commands.push(`echo "🚀 Scaffolding project: ${config.projectName}..."`);
-  commands.push(`mkdir -p "${tree.name}"`);
-  commands.push(`cd "${tree.name}"`);
-  commands.push("");
+  // -------------------------------------
+  // Header
+  // -------------------------------------
 
-  // 1. Create directory structure
+  commands.push(
+    "#!/usr/bin/env bash",
+    "# StackStruct Project Generation Script",
+    `# Generated on ${new Date().toISOString()}`,
+    "set -e",
+    "",
+    `echo "🚀 Scaffolding project: ${safeProjectName}..."`,
+    `mkdir -p "${safeProjectName}"`,
+    `cd "${safeProjectName}"`,
+    ""
+  );
+
+  // -------------------------------------
+  // 1. Directory Structure
+  // -------------------------------------
+
   commands.push("# 1. Creating directory structure...");
-  commands.push(...generateDirs(tree, ""));
-  commands.push("");
+  commands.push(...dirCommands, "");
 
-  // 2. Create files
-  commands.push("# 2. Populating files...");
-  commands.push(...generateFiles(tree, ""));
-  commands.push("");
+  // -------------------------------------
+  // 2. File Creation
+  // -------------------------------------
 
-  // 3. Install dependencies
+  commands.push("# 2. Creating files...");
+  commands.push(...fileCommands, "");
+
+  // -------------------------------------
+  // 3. Installing Dependencies
+  // -------------------------------------
+
   commands.push("# 3. Installing dependencies...");
 
-  const installCommands = [];
+  const installCommands = buildInstallCommands(config);
+  commands.push(...installCommands, "");
 
-  if (config.projectType !== "backend-only") {
-    const feMsg = 'echo "📦 Installing frontend dependencies..."';
-    const feCmd = config.monorepo
-      ? "(cd frontend && npm install)"
-      : "npm install";
-    installCommands.push(`${feMsg}\n${feCmd}`);
-  }
+  // -------------------------------------
+  // 4. Tailwind Guidance
+  // -------------------------------------
 
-  if (config.projectType !== "frontend-only") {
-    const beMsg = 'echo "📦 Installing backend dependencies..."';
-    let beCmd;
-    if (config.monorepo) {
-      beCmd = "(cd backend && npm install)";
-    } else if (config.projectType === "frontend-backend") {
-      beCmd = "(cd server && npm install)";
-    } else {
-      beCmd = "npm install";
-    }
-    installCommands.push(`${beMsg}\n${beCmd}`);
-  }
+  const tailwindMeta = buildTailwindGuidance(config);
 
-  commands.push(...installCommands);
-  commands.push("");
+  if (tailwindMeta) {
+    commands.push("# Tailwind v4.x setup tips (manual step)");
+    tailwindMeta.install.forEach(cmd =>
+      commands.push(`echo "Run manually: ${cmd}"`)
+    );
 
-  commands.push("# -------------------------------------");
-  commands.push('echo "✅ Project scaffolded successfully!"');
-  commands.push(`echo "Navigate to your project: cd ${config.projectName}"`);
-  commands.push("");
-
-  // Tailwind v4.1 guidance (commands only, not executed)
-  const frameworkId = config.frontend?.framework || config.frontend || 'react';
-  const usingTailwind = config.styling === 'tailwind';
-  const tailwindInstall = [];
-  let runCmd = '';
-  let tailwindNotes = [];
-
-  if (usingTailwind) {
-    switch (frameworkId) {
-      case 'react':
-      case 'vue':
-      case 'astro':
-        tailwindInstall.push('npm install tailwindcss @tailwindcss/vite');
-        runCmd = 'npm run dev';
-        break;
-      case 'nextjs':
-        tailwindInstall.push('npm install tailwindcss @tailwindcss/postcss postcss');
-        runCmd = 'npm run dev';
-        break;
-      case 'angular':
-        tailwindInstall.push('npm install tailwindcss @tailwindcss/postcss postcss --force');
-        runCmd = 'ng serve';
-        tailwindNotes.push('Note: Angular CLI setup required for ng serve. This scaffold provides structure only.');
-        break;
-      default:
-        break;
+    if (tailwindMeta.run) {
+      commands.push(`echo "Start dev server: ${tailwindMeta.run}"`);
     }
 
-    commands.push('# Tailwind v4.1 setup tips (not executed)');
-    tailwindInstall.forEach((c) => commands.push(`echo "To add Tailwind manually: ${c}"`));
-    if (runCmd) commands.push(`echo "Start dev server: ${runCmd}"`);
-    tailwindNotes.forEach((n) => commands.push(`echo "${n}"`));
+    tailwindMeta.notes.forEach(note =>
+      commands.push(`echo "${note}"`)
+    );
+
+    commands.push("");
   }
 
-  // We return the components for the UI to display
+  // -------------------------------------
+  // Final Message
+  // -------------------------------------
+
+  commands.push(
+    "# -------------------------------------",
+    'echo "✅ Project scaffolded successfully!"',
+    `echo "cd ${safeProjectName} to start working."`
+  );
+
   return {
-    projectName: config.projectName,
-    scaffoldingCommands: [
-      ...generateDirs(tree, ""),
-      ...generateFiles(tree, ""),
-    ],
-    installCommands: installCommands,
-    tailwind: usingTailwind
-      ? {
-          framework: frameworkId,
-          install: tailwindInstall,
-          run: runCmd,
-          notes: tailwindNotes,
-        }
-      : undefined,
+    projectName: safeProjectName,
+    scaffoldingCommands: [...dirCommands, ...fileCommands],
+    installCommands,
+    tailwind: tailwindMeta || undefined,
     finalScript: commands.join("\n"),
   };
+}
+
+/* =====================================================
+   Helper Builders
+===================================================== */
+
+function buildInstallCommands(config) {
+  const cmds = [];
+
+  const hasFrontend = config.projectType !== "backend-only";
+  const hasBackend = config.projectType !== "frontend-only";
+
+  if (hasFrontend) {
+    cmds.push('echo "📦 Installing frontend dependencies..."');
+
+    if (config.monorepo) {
+      cmds.push("(cd frontend && npm install)");
+    } else {
+      cmds.push("npm install");
+    }
+  }
+
+  if (hasBackend) {
+    cmds.push('echo "📦 Installing backend dependencies..."');
+
+    if (config.monorepo) {
+      cmds.push("(cd backend && npm install)");
+    } else if (config.projectType === "frontend-backend") {
+      cmds.push("(cd server && npm install)");
+    } else {
+      cmds.push("npm install");
+    }
+  }
+
+  return cmds;
+}
+
+function buildTailwindGuidance(config) {
+  if (config.styling !== "tailwind") return null;
+
+  const framework =
+    typeof config.frontend === "object"
+      ? config.frontend.framework
+      : config.frontend || "react";
+
+  const install = [];
+  let run = "";
+  const notes = [];
+
+  switch (framework) {
+    case "react":
+    case "vue":
+    case "astro":
+      install.push("npm install tailwindcss @tailwindcss/vite");
+      run = "npm run dev";
+      break;
+
+    case "nextjs":
+      install.push("npm install tailwindcss @tailwindcss/postcss postcss");
+      run = "npm run dev";
+      break;
+
+    case "angular":
+      install.push(
+        "npm install tailwindcss @tailwindcss/postcss postcss --force"
+      );
+      run = "ng serve";
+      notes.push(
+        "Angular CLI configuration required. This scaffold provides structure only."
+      );
+      break;
+  }
+
+  return {
+    framework,
+    install,
+    run,
+    notes,
+  };
+}
+
+function sanitizeName(name) {
+  return name.replace(/[^a-zA-Z0-9-_]/g, "");
 }

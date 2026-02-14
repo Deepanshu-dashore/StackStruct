@@ -33,9 +33,9 @@ export function InstructionalScriptViewer({ script }) {
                                     <span>[ 01 ]</span>
                                     <div className="h-px flex-1 bg-white/5" />
                                 </div>
-                                <h1 className="text-2xl font-bold tracking-tight text-white/95">Create your project</h1>
+                                <h1 className="text-2xl font-bold tracking-tight text-white/95">Initialize Project Environment</h1>
                                 <p className="text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
-                                    Start by creating a new framework project if you don't have one set up already. This command will create the main workspace.
+                                    Open your <span className="text-emerald-400 font-semibold">Git Bash terminal</span>. Run the command below to create and enter your project workspace. This ensures all subsequent script operations execute with full Unix-shell compatibility.
                                 </p>
                             </div>
                             <div className="relative group">
@@ -43,28 +43,53 @@ export function InstructionalScriptViewer({ script }) {
                                 <CodePreview
                                     content={`mkdir -p "${script.projectName}" && cd "${script.projectName}"`}
                                     language="bash"
-                                    fileName="Terminal"
+                                    fileName="Git Bash"
                                     allowCopy={true}
                                 />
                             </div>
                         </div>
 
-                        {/* Step 2 */}
+                        {/* Step 2: Framework Init */}
+                        {script.frameworkScaffold?.length > 0 && (
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                                <div className="space-y-5">
+                                    <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-muted-foreground/40">
+                                        <span>[ 02 ]</span>
+                                        <div className="h-px flex-1 bg-white/5" />
+                                    </div>
+                                    <h2 className="text-2xl font-bold tracking-tight text-white/95">Initialize Framework</h2>
+                                    <p className="text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
+                                        Run the official framework CLI to bootstrap the base project with your selected configurations.
+                                    </p>
+                                </div>
+                                <div className="relative group">
+                                    <div className="absolute -inset-1 bg-linear-to-r from-orange-500/20 to-yellow-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+                                    <CodePreview
+                                        content={script.frameworkScaffold.join('\n')}
+                                        language="bash"
+                                        fileName="Terminal"
+                                        allowCopy={true}
+                                    />
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Step 3: Custom Scaffolding */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                             <div className="space-y-5">
                                 <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-muted-foreground/40">
-                                    <span>[ 02 ]</span>
+                                    <span>[ 03 ]</span>
                                     <div className="h-px flex-1 bg-white/5" />
                                 </div>
-                                <h1 className="text-2xl font-bold tracking-tight text-white/95">Scaffold Files & Folders</h1>
+                                <h2 className="text-2xl font-bold tracking-tight text-white/95">Configure Architectural Core</h2>
                                 <p className="text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
-                                    Generate the initial directory structure and boilerplate files for your frontend and backend modules.
+                                    Inject production-ready folder hierarchies, utility modules, and scalable organizational patterns tailored to your stack.
                                 </p>
                             </div>
                             <div className="relative group">
                                 <div className="absolute -inset-1 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
                                 <CodePreview
-                                    content={script.scaffoldingCommands.join('\n\n')}
+                                    content={script.scaffoldingCommands.join('\n')}
                                     language="bash"
                                     fileName="Terminal"
                                     allowCopy={true}
@@ -72,15 +97,15 @@ export function InstructionalScriptViewer({ script }) {
                             </div>
                         </div>
 
-                        {/* Step 3 */}
+                        {/* Step 4: Installation */}
                         {script.installCommands.length > 0 && (
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                                 <div className="space-y-5">
                                     <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-muted-foreground/40">
-                                        <span>[ 03 ]</span>
+                                        <span>[ 04 ]</span>
                                         <div className="h-px flex-1 bg-white/5" />
                                     </div>
-                                    <h1 className="text-2xl font-bold tracking-tight text-white/95">Install Dependencies</h1>
+                                    <h2 className="text-2xl font-bold tracking-tight text-white/95">Install Dependencies</h2>
                                     <p className="text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
                                         Download and install all necessary npm packages for your selected framework and component libraries.
                                     </p>
@@ -88,7 +113,7 @@ export function InstructionalScriptViewer({ script }) {
                                 <div className="relative group">
                                     <div className="absolute -inset-1 bg-linear-to-r from-purple-500/20 to-emerald-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
                                     <CodePreview
-                                        content={script.installCommands.join('\n\n')}
+                                        content={script.installCommands.join('\n')}
                                         language="bash"
                                         fileName="Terminal"
                                         allowCopy={true}
