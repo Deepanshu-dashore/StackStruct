@@ -30,14 +30,15 @@ export default function DocLayout({ children }) {
                                     <img
                                         src="/OnPageImg.png"
                                         alt="Community"
-                                        className="w-full h-24 object-cover opacity-40 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110"
+                                        className="w-full h-32 object-cover opacity-60 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110"
                                     />
                                     <div className="p-4 space-y-3 relative z-20">
-                                        <p className="text-[11px] font-medium text-white/50 leading-relaxed italic group-hover:text-white/80 transition-colors">
-                                            "Building StackStruct in public. Let's connect!"
+                                        <p className="text-[11px] font-medium animate-pulse text-white/80 leading-relaxed group-hover:text-white/80 transition-colors">
+                                            <span className="italic text-white/50">"Building StackStruct in public. Let's connect!"</span><br />
+                                            If your here so you say hay to me 👋
                                         </p>
                                         <a
-                                            href="https://linkedin.com/in/dipanshudashore"
+                                            href="https://linkedin.com/in/deepanshu-dashore"
                                             target="_blank"
                                             className="inline-flex items-center gap-2 text-[10px] font-bold text-cyan-400 uppercase tracking-widest hover:text-cyan-300 transition-colors"
                                         >
