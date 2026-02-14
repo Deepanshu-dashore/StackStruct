@@ -9,7 +9,7 @@
   "dashboard": "catppuccin:folder-dashboard",
   "settings": "catppuccin:folder-settings",
   "components": "catppuccin:folder-components",
-  "hooks": "catppuccin:folder-hook",
+  "hooks": "catppuccin:folder-hooks",
   "lib": "catppuccin:folder-lib",
   "utils": "catppuccin:folder-utils",
   "services": "catppuccin:folder-api",
