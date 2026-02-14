@@ -19,21 +19,8 @@ export default function App() {
   const logoUrl = "https://stack-struct.vercel.app/NewLogo.png"; // Placeholder logo or use local
 
   return (
-    <div className="min-h-screen bg-gray-950/60 text-gray-100 flex flex-col">
-      <div className="fixed inset-0 -z-10 overflow-hidden bg-slate-950">
-        {/* Mesh Gradients */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-900/20 blur-[120px] animate-pulse-slow"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-900/20 blur-[120px] animate-pulse-slow ml-20"></div>
-        <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-cyan-900/10 blur-[100px] animate-float"></div>
-
-        {/* Grid Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.15]"
-          style={{
-            backgroundImage: \`radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)\`,
-            backgroundSize: '40px 40px'
-          }}
-        ></div>
+    <div className="min-h-screen bg-[#010101] text-gray-100 flex flex-col">
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-[#010101]">
 
         {/* Grain Overlay */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
@@ -105,9 +92,11 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t relative z-20 border-gray-800 py-6 text-center flex justify-between px-20 text-xs text-gray-600">
-        Generated with StackStruct © 2026 StackStruct. All rights reserved.<span className="text-white/60"> Built with <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} className="inline-block animate-pulse" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M9 2H5v2H3v2H1v6h2v2h2v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h2v-2h2V6h-2V4h-2V2h-4v2h-2v2h-2V4H9zm0 2v2h2v2h2V6h2V4h4v2h2v6h-2v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2H3V6h2V4z"></path>
-        </svg> by Deepanshu Dashore</span>
+        Generated with StackStruct © 2026 StackStruct. All rights reserved.<span className="text-white/60"> Built with 
+        <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} className="inline-block animate-pulse" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9 2H5v2H3v2H1v6h2v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h2V6h-2V4h-2V2h-4v2h-2v2h-2V4H9zm0 2v2h2v2h2V6h2V4h4v2h2v6h-2v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2H3V6h2V4z"></path>
+        </svg>
+        by Deepanshu Dashore</span>
       </footer>
     </div>
   );

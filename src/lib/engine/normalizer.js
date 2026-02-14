@@ -36,9 +36,13 @@ export function normalizeConfig(config) {
     );
   }
 
-  // Monorepo logic
-  if (cleanConfig.monorepo && cleanConfig.projectType !== "frontend-backend") {
-    cleanConfig.monorepo = false;
+  // Fullstack Flags
+  if (cleanConfig.projectType === "frontend-backend") {
+    if (cleanConfig.sharedLogic === undefined) cleanConfig.sharedLogic = true;
+    if (cleanConfig.docker === undefined) cleanConfig.docker = false;
+  } else {
+    cleanConfig.sharedLogic = false;
+    cleanConfig.docker = false;
   }
 
   return cleanConfig;

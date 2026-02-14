@@ -10,3 +10,4 @@ export const folderPresets = stackData.folderPresets;
 export const authOptions = stackData.auth;
 export const databaseOptions = stackData.database;
 export const ormOptions = stackData.orm;
+export const fullstackCombinations = stackData.fullstackCombinations;

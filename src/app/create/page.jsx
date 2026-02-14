@@ -15,7 +15,6 @@ export default function CreatePage() {
     const [config, setConfig] = useState({
         projectName: 'my-stackstruct-app',
         projectType: 'frontend-backend',
-        monorepo: true,
         frontend: {
             framework: 'react',
             language: 'typescript',
@@ -33,6 +32,9 @@ export default function CreatePage() {
             fileUploads: false,
             folderPreset: 'standard',
         },
+        sharedLogic: true,
+        docker: false,
+        fullstackPreset: 'custom',
     });
 
     const fileTree = useMemo(() => generateProject(config), [config]);

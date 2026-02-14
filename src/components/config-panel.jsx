@@ -10,7 +10,8 @@ import {
     folderPresets,
     authOptions,
     databaseOptions,
-    ormOptions
+    ormOptions,
+    fullstackCombinations
 } from '@/lib/config-options';
 
 import {
@@ -24,7 +25,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { Settings, Code, Braces } from 'lucide-react';
+import { Settings, Code, Braces, Layers, Zap } from 'lucide-react';
 import { Icon } from '@iconify/react';
 
 export function ConfigPanel({ config, setConfig }) {
@@ -88,17 +89,92 @@ export function ConfigPanel({ config, setConfig }) {
                                     </SelectContent>
                                 </Select>
                             </div>
-                            {config.projectType === 'frontend-backend' && (
-                                <div className="flex items-center justify-between p-3.5 rounded-lg bg-white/3 border border-white/5">
-                                    <div className="space-y-0.5">
-                                        <Label htmlFor="monorepo" className="text-sm font-medium text-white/70 leading-none">Monorepo Structure</Label>
-                                        <p className="text-[10px] text-muted-foreground/30">Frontend and Backend in root</p>
-                                    </div>
-                                    <Switch id="monorepo" checked={config.monorepo} onCheckedChange={(checked) => handleUpdate('monorepo', checked)} className="scale-75 origin-right" />
-                                </div>
-                            )}
                         </AccordionContent>
                     </AccordionItem>
+
+                    {config.projectType === 'frontend-backend' && (
+                        <AccordionItem value="fullstack" className="border-none px-0">
+                            <AccordionTrigger className="hover:no-underline py-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="text-emerald-500/70">
+                                        <Layers className="h-4 w-4" />
+                                    </div>
+                                    <h2 className="text-base font-semibold tracking-tight text-white/80">Fullstack Details</h2>
+                                </div>
+                            </AccordionTrigger>
+                            <AccordionContent className="pb-8 pt-0 grid gap-6">
+                                <div className="space-y-2.5">
+                                    <Label htmlFor="stack-preset" className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em]">Stack Preset (Auto-Config)</Label>
+                                    <Select
+                                        value={config.fullstackPreset || 'custom'}
+                                        onValueChange={(v) => {
+                                            const preset = fullstackCombinations.find(p => p.id === v);
+                                            if (preset) {
+                                                setConfig({
+                                                    ...config,
+                                                    fullstackPreset: v,
+                                                    frontend: {
+                                                        ...config.frontend,
+                                                        framework: preset.frontendId
+                                                    },
+                                                    backend: {
+                                                        ...config.backend,
+                                                        framework: preset.backendId
+                                                    },
+                                                });
+                                            } else {
+                                                handleUpdate('fullstackPreset', v);
+                                            }
+                                        }}
+                                    >
+                                        <SelectTrigger id="stack-preset" className="bg-white/3 border-white/5 h-10 text-sm rounded-lg"><SelectValue /></SelectTrigger>
+                                        <SelectContent className="bg-[#050508] border-white/10">
+                                            <SelectItem value="custom" className="focus:bg-white/5 py-2.5">
+                                                <div className="flex items-center gap-2.5">
+                                                    <Zap className="h-4 w-4 text-yellow-500/50" />
+                                                    <span className="text-sm">Custom Configuration</span>
+                                                </div>
+                                            </SelectItem>
+                                            {fullstackCombinations.map(c => (
+                                                <SelectItem key={c.id} value={c.id} className="focus:bg-white/5 py-2.5">
+                                                    <div className="flex items-center gap-2.5">
+                                                        <Icon icon="lucide:layers" className="h-4 w-4 text-emerald-500/50" />
+                                                        <span className="text-sm">{c.label}</span>
+                                                    </div>
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                <div className="flex items-center justify-between p-3.5 rounded-lg bg-white/3 border border-white/5">
+                                    <div className="space-y-0.5">
+                                        <Label htmlFor="shared-logic" className="text-sm font-medium text-white/70 leading-none">Shared Types & Utils</Label>
+                                        <p className="text-[10px] text-muted-foreground/30">Create a /shared directory</p>
+                                    </div>
+                                    <Switch
+                                        id="shared-logic"
+                                        checked={config.sharedLogic}
+                                        onCheckedChange={(checked) => handleUpdate('sharedLogic', checked)}
+                                        className="scale-75 origin-right"
+                                    />
+                                </div>
+
+                                <div className="flex items-center justify-between p-3.5 rounded-lg bg-white/3 border border-white/5">
+                                    <div className="space-y-0.5">
+                                        <Label htmlFor="docker" className="text-sm font-medium text-white/70 leading-none">Docker Support</Label>
+                                        <p className="text-[10px] text-muted-foreground/30">Add docker-compose and Dockerfiles</p>
+                                    </div>
+                                    <Switch
+                                        id="docker"
+                                        checked={config.docker}
+                                        onCheckedChange={(checked) => handleUpdate('docker', checked)}
+                                        className="scale-75 origin-right"
+                                    />
+                                </div>
+                            </AccordionContent>
+                        </AccordionItem>
+                    )}
 
                     {showFrontend && (
                         <AccordionItem value="frontend" className="border-none px-0">
@@ -118,10 +194,15 @@ export function ConfigPanel({ config, setConfig }) {
                                             <SelectTrigger id="fe-framework" className="bg-white/3 border-white/5 h-10 text-sm rounded-lg"><SelectValue /></SelectTrigger>
                                             <SelectContent className="bg-[#050508] border-white/10">
                                                 {frontendFrameworks.map(f => (
-                                                    <SelectItem key={f.id} value={f.id} className="focus:bg-white/5 py-2.5">
-                                                        <div className="flex items-center gap-2.5">
-                                                            <Icon icon={f.icon} className="h-4 w-4" />
-                                                            <span className="text-sm">{f.label}</span>
+                                                    <SelectItem key={f.id} value={f.id} disabled={f.comingSoon} className="focus:bg-white/5 py-2.5">
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <Icon icon={f.icon} className="h-4 w-4" />
+                                                                <span className="text-sm">{f.label}</span>
+                                                            </div>
+                                                            {f.comingSoon && (
+                                                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500/80 border border-amber-500/20 uppercase tracking-tighter">Soon</span>
+                                                            )}
                                                         </div>
                                                     </SelectItem>
                                                 ))}
@@ -152,10 +233,15 @@ export function ConfigPanel({ config, setConfig }) {
                                             <SelectTrigger id="fe-style" className="bg-white/3 border-white/5 h-10 text-sm rounded-lg"><SelectValue /></SelectTrigger>
                                             <SelectContent className="bg-[#050508] border-white/10">
                                                 {stylingOptions.map(s => (
-                                                    <SelectItem key={s.id} value={s.id} className="focus:bg-white/5 py-2.5">
-                                                        <div className="flex items-center gap-2.5">
-                                                            <Icon icon={s.icon} className="h-4 w-4" />
-                                                            <span className="text-sm">{s.label}</span>
+                                                    <SelectItem key={s.id} value={s.id} disabled={s.comingSoon} className="focus:bg-white/5 py-2.5">
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <Icon icon={s.icon} className="h-4 w-4" />
+                                                                <span className="text-sm">{s.label}</span>
+                                                            </div>
+                                                            {s.comingSoon && (
+                                                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500/80 border border-amber-500/20 uppercase tracking-tighter">Soon</span>
+                                                            )}
                                                         </div>
                                                     </SelectItem>
                                                 ))}
@@ -168,10 +254,15 @@ export function ConfigPanel({ config, setConfig }) {
                                             <SelectTrigger id="fe-components" className="bg-white/3 border-white/5 h-10 text-sm rounded-lg"><SelectValue /></SelectTrigger>
                                             <SelectContent className="bg-[#050508] border-white/10">
                                                 {componentLibraries.map(c => (
-                                                    <SelectItem key={c.id} value={c.id} className="focus:bg-white/5 py-2.5">
-                                                        <div className="flex items-center gap-2.5">
-                                                            <Icon icon={c.icon} className="h-4 w-4" />
-                                                            <span className="text-sm">{c.label}</span>
+                                                    <SelectItem key={c.id} value={c.id} disabled={c.comingSoon} className="focus:bg-white/5 py-2.5">
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <Icon icon={c.icon} className="h-4 w-4" />
+                                                                <span className="text-sm">{c.label}</span>
+                                                            </div>
+                                                            {c.comingSoon && (
+                                                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500/80 border border-amber-500/20 uppercase tracking-tighter">Soon</span>
+                                                            )}
                                                         </div>
                                                     </SelectItem>
                                                 ))}
@@ -217,10 +308,15 @@ export function ConfigPanel({ config, setConfig }) {
                                             <SelectTrigger id="be-framework" className="bg-white/3 border-white/5 h-10 text-sm rounded-lg"><SelectValue /></SelectTrigger>
                                             <SelectContent className="bg-[#050508] border-white/10">
                                                 {backendFrameworks.map(f => (
-                                                    <SelectItem key={f.id} value={f.id} className="focus:bg-white/5 py-2.5">
-                                                        <div className="flex items-center gap-2.5">
-                                                            <Icon icon={f.icon} className="h-4 w-4" />
-                                                            <span className="text-sm">{f.label}</span>
+                                                    <SelectItem key={f.id} value={f.id} disabled={f.comingSoon} className="focus:bg-white/5 py-2.5">
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <Icon icon={f.icon} className="h-4 w-4" />
+                                                                <span className="text-sm">{f.label}</span>
+                                                            </div>
+                                                            {f.comingSoon && (
+                                                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500/80 border border-amber-500/20 uppercase tracking-tighter">Soon</span>
+                                                            )}
                                                         </div>
                                                     </SelectItem>
                                                 ))}
@@ -251,10 +347,15 @@ export function ConfigPanel({ config, setConfig }) {
                                             <SelectTrigger id="be-database" className="bg-white/3 border-white/5 h-10 text-sm rounded-lg"><SelectValue /></SelectTrigger>
                                             <SelectContent className="bg-[#050508] border-white/10">
                                                 {databaseOptions.map(o => (
-                                                    <SelectItem key={o.id} value={o.id} className="focus:bg-white/5 py-2.5">
-                                                        <div className="flex items-center gap-2.5">
-                                                            <Icon icon={o.icon} className="h-4 w-4" />
-                                                            <span className="text-sm">{o.label}</span>
+                                                    <SelectItem key={o.id} value={o.id} disabled={o.comingSoon} className="focus:bg-white/5 py-2.5">
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <Icon icon={o.icon} className="h-4 w-4" />
+                                                                <span className="text-sm">{o.label}</span>
+                                                            </div>
+                                                            {o.comingSoon && (
+                                                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500/80 border border-amber-500/20 uppercase tracking-tighter">Soon</span>
+                                                            )}
                                                         </div>
                                                     </SelectItem>
                                                 ))}
@@ -267,10 +368,15 @@ export function ConfigPanel({ config, setConfig }) {
                                             <SelectTrigger id="be-orm" className="bg-white/3 border-white/5 h-10 text-sm rounded-lg"><SelectValue /></SelectTrigger>
                                             <SelectContent className="bg-[#050508] border-white/10">
                                                 {ormOptions.map(o => (
-                                                    <SelectItem key={o.id} value={o.id} className="focus:bg-white/5 py-2.5">
-                                                        <div className="flex items-center gap-2.5">
-                                                            <Icon icon={o.icon} className="h-4 w-4" />
-                                                            <span className="text-sm">{o.label}</span>
+                                                    <SelectItem key={o.id} value={o.id} disabled={o.comingSoon} className="focus:bg-white/5 py-2.5">
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <Icon icon={o.icon} className="h-4 w-4" />
+                                                                <span className="text-sm">{o.label}</span>
+                                                            </div>
+                                                            {o.comingSoon && (
+                                                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500/80 border border-amber-500/20 uppercase tracking-tighter">Soon</span>
+                                                            )}
                                                         </div>
                                                     </SelectItem>
                                                 ))}
@@ -285,10 +391,15 @@ export function ConfigPanel({ config, setConfig }) {
                                             <SelectTrigger id="be-auth" className="bg-white/3 border-white/5 h-10 text-sm rounded-lg"><SelectValue /></SelectTrigger>
                                             <SelectContent className="bg-[#050508] border-white/10">
                                                 {authOptions.map(o => (
-                                                    <SelectItem key={o.id} value={o.id} className="focus:bg-white/5 py-2.5">
-                                                        <div className="flex items-center gap-2.5">
-                                                            <Icon icon={o.icon} className="h-4 w-4" />
-                                                            <span className="text-sm">{o.label}</span>
+                                                    <SelectItem key={o.id} value={o.id} disabled={o.comingSoon} className="focus:bg-white/5 py-2.5">
+                                                        <div className="flex items-center justify-between w-full">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <Icon icon={o.icon} className="h-4 w-4" />
+                                                                <span className="text-sm">{o.label}</span>
+                                                            </div>
+                                                            {o.comingSoon && (
+                                                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500/80 border border-amber-500/20 uppercase tracking-tighter">Soon</span>
+                                                            )}
                                                         </div>
                                                     </SelectItem>
                                                 ))}
@@ -324,6 +435,6 @@ export function ConfigPanel({ config, setConfig }) {
                     )}
                 </Accordion>
             </CardContent>
-        </Card>
+        </Card >
     );
 }

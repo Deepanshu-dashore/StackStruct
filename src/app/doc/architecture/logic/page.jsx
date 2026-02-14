@@ -21,10 +21,10 @@ export default function EngineLogicPage() {
                 </p>
             </motion.div>
 
-            <div className="prose prose-invert max-w-none space-y-12">
-                <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold">Generation Lifecycle</h2>
-                    <p className="text-muted-foreground text-lg font-light leading-relaxed">
+            <div className="prose prose-invert max-w-none pb-20">
+                <section className="space-y-6" id="lifecycle">
+                    <h2 className="text-2xl font-semibold text-white/90">Generation Lifecycle</h2>
+                    <p className="text-white/60 text-lg font-light leading-relaxed">
                         The StackStruct engine follows a strict multi-pass process to transform your visual selections into a working codebase. This ensures that every project is valid, consistent, and predictable.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -46,12 +46,14 @@ export default function EngineLogicPage() {
                     </div>
                 </section>
 
-                <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold">Deterministic Files</h2>
-                    <p className="text-muted-foreground text-lg font-light leading-relaxed">
+                <hr className="border-white/5 my-12" />
+
+                <section className="space-y-6" id="deterministic">
+                    <h2 className="text-2xl font-semibold text-white/90">Deterministic Files</h2>
+                    <p className="text-white/60 text-lg font-light leading-relaxed">
                         Unlike many generic boilerplates, our engine uses a "build from parts" approach. Instead of string matching, we use a structured node system:
                     </p>
-                    <div className="bg-black/60 border border-white/5 rounded-2xl p-8 font-mono text-sm leading-relaxed text-blue-300">
+                    <div className="bg-black/40 border border-white/5 rounded-2xl p-8 font-mono text-sm leading-relaxed text-blue-300 shadow-inner">
                         <span className="text-white/30 italic">// Internal File Representation</span><br />
                         export type FileNode = &#123;<br />
                         &nbsp;&nbsp;type: "file";<br />
@@ -61,12 +63,14 @@ export default function EngineLogicPage() {
                     </div>
                 </section>
 
-                <section className="space-y-6 pt-12 border-t border-white/5">
-                    <h2 className="text-2xl font-semibold italic">Script Generation (Safe Mode)</h2>
-                    <p className="text-muted-foreground text-lg font-light leading-relaxed">
+                <hr className="border-white/5 my-12" />
+
+                <section className="space-y-6 pt-4" id="safety">
+                    <h2 className="text-2xl font-semibold text-white/90 italic">Script Generation (Safe Mode)</h2>
+                    <p className="text-white/60 text-lg font-light leading-relaxed">
                         Our script generator is designed for safety. It uses 2-pass traversal:
                     </p>
-                    <ul className="list-disc list-inside space-y-4 text-muted-foreground font-light">
+                    <ul className="list-disc list-inside space-y-4 text-white/50 font-light">
                         <li><span className="text-white font-medium underline underline-offset-4 decoration-white/10">Pass 1 (Directories):</span> All <code>mkdir -p</code> commands are generated first.</li>
                         <li><span className="text-white font-medium underline underline-offset-4 decoration-white/10">Pass 2 (Files):</span> Files are written using <code>cat &lt;&lt; 'EOF'</code> to ensure content integrity and bash compatibility.</li>
                     </ul>

@@ -2,6 +2,7 @@ import { normalizeConfig } from "./normalizer";
 import { getFolder, getFile } from "./utils/tree-nodes";
 import { frontendPipeline } from "./pipelines/frontend";
 import { backendPipeline } from "./pipelines/backend";
+import { fullstackFramework } from "./frameworks/fullstack";
 
 /**
  * Main entrance to the generation engine.
@@ -27,31 +28,38 @@ export function generateProject(rawConfig) {
   const rootChildren = [];
 
   if (config.frontend && config.backend) {
-    if (config.monorepo) {
-      // /frontend and /backend folders
-      rootChildren.push(getFolder("frontend", frontendTree));
-      rootChildren.push(getFolder("backend", backendTree));
+    // Fullstack: Always separate into frontend/ and backend/ folders
+    rootChildren.push(getFolder("frontend", frontendTree));
+    rootChildren.push(getFolder("backend", backendTree));
 
-      // Monorepo package.json
-      rootChildren.push(
-        getFile(
-          "package.json",
-          JSON.stringify(
-            {
-              name: config.projectName,
-              private: true,
-              workspaces: ["frontend", "backend"],
+    // Root package.json to manage the workspace
+    rootChildren.push(
+      getFile(
+        "package.json",
+        JSON.stringify(
+          {
+            name: config.projectName,
+            private: true,
+            workspaces: ["frontend", "backend"],
+            scripts: {
+              "dev:frontend": "npm run dev --workspace=frontend",
+              "dev:backend": "npm run dev --workspace=backend",
+              dev: 'concurrently "npm run dev:frontend" "npm run dev:backend"',
+              "install:all": "npm install",
             },
-            null,
-            2,
-          ),
+            devDependencies: {
+              concurrently: "^8.2.0",
+            },
+          },
+          null,
+          2,
         ),
-      );
-    } else {
-      // Standard: Frontend in root, Backend in /server
-      rootChildren.push(...frontendTree);
-      rootChildren.push(getFolder("server", backendTree));
-    }
+      ),
+    );
+
+    // Add fullstack-specific nodes (shared logic, docker, root files)
+    const fullstackNodes = fullstackFramework(config);
+    rootChildren.push(...fullstackNodes);
   } else if (config.frontend) {
     rootChildren.push(...frontendTree);
   } else if (config.backend) {

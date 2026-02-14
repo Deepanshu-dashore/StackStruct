@@ -11,76 +11,80 @@ export default function DocIntroductionPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-4"
             >
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white" id="overview">
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white/90" id="overview">
                     What is StackStruct?
                 </h1>
-                <div className="space-y-6 text-[17px] leading-[1.6] text-white/90 font-light">
+                <div className="space-y-6 text-[17px] leading-[1.6] text-white/60 font-light">
                     <p>
-                        StackStruct is a React framework for building full-stack web applications. You use React Components to build user interfaces, and StackStruct for additional features and optimizations.
+                        StackStruct is a React-first framework for building full-stack web applications. It simplifies the bridge between user interfaces and complex backend configurations.
                     </p>
                     <p>
-                        It also automatically configures lower-level tools like bundlers and compilers. You can instead focus on building your product and shipping quickly.
+                        By automatically configuring lower-level tools like bundlers and project hierarchies, we allow you to focus on building features rather than wrestling with configuration.
                     </p>
                     <p>
-                        Whether you're an individual developer or part of a larger team, StackStruct can help you build interactive, dynamic, and fast React applications.
+                        Whether you're an individual developer or part of a larger team, StackStruct helps you scaffold interactive, dynamic, and production-ready applications in seconds.
                     </p>
                 </div>
             </motion.div>
 
-            <hr className="border-white/5" />
+            <hr className="border-white/5 my-12" />
 
             <section className="space-y-8" id="quick-start">
-                <h2 className="text-3xl font-bold tracking-tight text-white">How to use the docs</h2>
-                <p className="text-[17px] text-white/90 font-light">The docs are organized into 3 sections:</p>
+                <h2 className="text-2xl font-bold tracking-tight text-white/90">How to use the docs</h2>
+                <p className="text-[17px] text-white/60 font-light">The docs are organized into logical sections:</p>
 
-                <ul className="space-y-4 text-[17px] font-light">
+                <ul className="space-y-6 text-[17px] font-light">
                     <li className="flex items-start gap-3">
-                        <span className="text-white/20 mt-1">—</span>
+                        <span className="text-cyan-500/30 mt-1">—</span>
                         <div className="flex-1">
-                            <span className="text-cyan-400 hover:underline cursor-pointer">Getting Started</span>
-                            <span className="text-white/60">: Step-by-step tutorials to help you create a new application and learn the core StackStruct features.</span>
+                            <span className="text-cyan-400 font-medium">Getting Started</span>
+                            <span className="text-white/50">: Guided tours to help you create your first application and learn core features.</span>
                         </div>
                     </li>
                     <li className="flex items-start gap-3">
-                        <span className="text-white/20 mt-1">—</span>
+                        <span className="text-cyan-500/30 mt-1">—</span>
                         <div className="flex-1">
-                            <span className="text-cyan-400 hover:underline cursor-pointer">Guides</span>
-                            <span className="text-white/60">: Tutorials on specific use cases, choose what's relevant to you.</span>
+                            <span className="text-cyan-400 font-medium">Architecture</span>
+                            <span className="text-white/50">: Technical deep dives into the engine logic and preset systems.</span>
                         </div>
                     </li>
                     <li className="flex items-start gap-3">
-                        <span className="text-white/20 mt-1">—</span>
+                        <span className="text-cyan-500/30 mt-1">—</span>
                         <div className="flex-1">
-                            <span className="text-cyan-400 hover:underline cursor-pointer">API Reference</span>
-                            <span className="text-white/60">: Detailed technical reference for every feature.</span>
+                            <span className="text-cyan-400 font-medium">Frameworks</span>
+                            <span className="text-white/50">: Specific instructions and patterns for React, Next.js, Vue, and more.</span>
                         </div>
                     </li>
                 </ul>
             </section>
 
+            <hr className="border-white/5 my-12" />
+
             <section className="space-y-8" id="why-opinionated">
-                <h2 className="text-2xl font-bold text-white">Why Opinionated?</h2>
-                <p className="text-[17px] text-white/70 leading-relaxed font-light">
-                    We believe that making initial architectural decisions can be the biggest bottleneck in project development. By providing stable, community-vetted folder structures and patterns (like feat-based or modular designs), we let you focus on what matters most: **your code.**
+                <h2 className="text-2xl font-bold text-white/90">Why Opinionated?</h2>
+                <p className="text-[17px] text-white/60 leading-relaxed font-light">
+                    We believe that making initial architectural decisions can be the biggest bottleneck in project development. By providing stable, community-vetted folder structures and patterns, we let you focus on what matters most: **your code.**
                 </p>
             </section>
 
-            <section className="space-y-8 pt-4" id="next-steps">
-                <h2 className="text-2xl font-bold text-white">Next Steps</h2>
-                <p className="text-[17px] text-white/70 leading-relaxed font-light">
+            <hr className="border-white/5 my-12" />
+
+            <section className="space-y-8" id="next-steps">
+                <h2 className="text-2xl font-bold text-white/90 italic">Next Steps</h2>
+                <p className="text-[17px] text-white/60 leading-relaxed font-light">
                     Ready to build? Jump into the installation guide or explore our project structure philosophy.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <a href="/doc/installation" className="p-6 rounded-xl border border-white/5 hover:bg-white/2 transition-all">
-                        <h4 className="font-bold text-white mb-1">Installation Guide</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <a href="/doc/installation" className="p-6 rounded-2xl border border-white/5 hover:bg-white/2 hover:border-cyan-500/20 transition-all group">
+                        <h4 className="font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">Installation Guide</h4>
                         <p className="text-sm text-white/40">Step-by-step environment setup.</p>
                     </a>
-                    <a href="/doc/how-it-works" className="p-6 rounded-xl border border-white/5 hover:bg-white/2 transition-all text-cyan-400">
-                        <h4 className="font-bold text-white mb-1">How it Works</h4>
+                    <a href="/doc/how-it-works" className="p-6 rounded-2xl border border-white/5 hover:bg-white/2 hover:border-cyan-500/20 transition-all group">
+                        <h4 className="font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">How it Works</h4>
                         <p className="text-sm text-white/40">Understand the generation engine.</p>
                     </a>
-                    <a href="/doc/structure" className="p-6 rounded-xl border border-white/5 hover:bg-white/2 transition-all">
-                        <h4 className="font-bold text-white mb-1">Architecture</h4>
+                    <a href="/doc/structure" className="p-6 rounded-2xl border border-white/5 hover:bg-white/2 hover:border-cyan-500/20 transition-all group">
+                        <h4 className="font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">Architecture</h4>
                         <p className="text-sm text-white/40">Our folder structure philosophy.</p>
                     </a>
                 </div>

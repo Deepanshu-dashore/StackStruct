@@ -124,7 +124,7 @@ function buildInstallCommands(config) {
 
   // 1. Frontend
   if (config.frontend) {
-    const fePath = config.monorepo ? "frontend" : ".";
+    const fePath = config.frontend && config.backend ? "frontend" : ".";
     // Map framework ID to command key if needed
     let feFramework = config.frontend.framework;
     if (feFramework === "react") feFramework = "react-vite";
@@ -168,11 +168,7 @@ function buildInstallCommands(config) {
 
   // 2. Backend
   if (config.backend) {
-    const bePath = config.monorepo
-      ? "backend"
-      : config.projectType === "frontend-backend"
-        ? "server"
-        : ".";
+    const bePath = config.frontend && config.backend ? "backend" : ".";
     const beFramework = config.backend.framework;
     const beData = frameworkCommands.backend[beFramework];
 

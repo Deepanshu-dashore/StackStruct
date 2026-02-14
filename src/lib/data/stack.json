@@ -9,37 +9,39 @@
     { "id": "react", "label": "React", "icon": "logos:react", "type": "frontend", "description": "The most popular library for web and native user interfaces. Component-based and declarative." },
     { "id": "nextjs", "label": "Next.js", "icon": "logos:nextjs-icon", "type": "fullstack", "description": "React framework with SSR, SSG, and API routes. Frontend-first but can handle backend logic." },
     { "id": "vue", "label": "Vue.js", "icon": "logos:vue", "type": "frontend", "description": "The Progressive JavaScript Framework. Approachable, versatile, and performant." },
-    { "id": "nuxt", "label": "Nuxt.js", "icon": "logos:nuxt-icon", "type": "fullstack", "description": "Vue framework with SSR/SSG capabilities. Intuitive and powerful developer experience." },
-    { "id": "angular", "label": "Angular", "icon": "logos:angular-icon", "type": "frontend", "description": "Platform for building mobile and desktop web applications. Complete framework solution." },
-    { "id": "svelte", "label": "Svelte", "icon": "logos:svelte-icon", "type": "frontend", "description": "Cybernetically enhanced web apps. Compiles to vanilla JS for optimal performance." },
+    { "id": "nuxt", "label": "Nuxt.js", "icon": "logos:nuxt-icon", "type": "fullstack", "comingSoon": true, "description": "Vue framework with SSR/SSG capabilities. Intuitive and powerful developer experience." },
+    { "id": "angular", "label": "Angular", "icon": "logos:angular-icon", "type": "frontend", "comingSoon": true, "description": "Platform for building mobile and desktop web applications. Complete framework solution." },
+    { "id": "svelte", "label": "Svelte", "icon": "logos:svelte-icon", "type": "frontend", "comingSoon": true, "description": "Cybernetically enhanced web apps. Compiles to vanilla JS for optimal performance." },
     { "id": "astro", "label": "Astro", "icon": "vscode-icons:file-type-astro", "type": "frontend", "description": "All-in-one web framework for content-driven websites. Ship less JavaScript." }
   ],
   "backend": [
     { "id": "nodejs", "label": "Node.js (runtime)", "icon": "logos:nodejs-icon", "type": "backend", "description": "JavaScript runtime built on Chrome's V8 engine. Server-side JavaScript execution." },
     { "id": "express", "label": "Express.js", "icon": "simple-icons:express", "type": "backend", "description": "Fast, unopinionated, minimalist web framework for Node.js. Industry standard." },
     { "id": "node-express", "label": "Node.js + Express", "icon": "logos:nodejs-icon", "type": "backend", "description": "Most common Node.js backend stack. Flexible and widely adopted for REST APIs." },
-    { "id": "fastify", "label": "Fastify", "icon": "logos:fastify-icon", "type": "backend", "description": "Fast and low overhead web framework for Node.js. High performance focused." },
+    { "id": "fastify", "label": "Fastify", "icon": "devicon-plain:fastify", "type": "backend", "description": "Fast and low overhead web framework for Node.js. High performance focused." },
     { "id": "nestjs", "label": "NestJS", "icon": "logos:nestjs", "type": "backend", "description": "Enterprise Node.js framework with TypeScript. Scalable and maintainable architecture." },
     { "id": "django", "label": "Django", "icon": "logos:django-icon", "type": "backend", "description": "High-level Python web framework. Batteries-included with ORM, auth, and admin." },
-    { "id": "flask", "label": "Flask", "icon": "logos:flask", "type": "backend", "description": "Lightweight Python web framework. Minimal and flexible for API development." },
+    { "id": "flask", "label": "Flask", "icon": "skill-icons:flask-dark", "type": "backend", "description": "Lightweight Python web framework. Minimal and flexible for API development." },
     { "id": "springboot", "label": "Spring Boot", "icon": "logos:spring-icon", "type": "backend", "description": "Enterprise Java framework. Production-ready with robust ecosystem." }
   ],
   "database": [
     { "id": "none", "label": "None", "icon": "lucide:x", "category": "none" },
     { "id": "mongodb", "label": "MongoDB", "icon": "devicon:mongodb", "type": "nosql", "category": "nosql", "description": "Flexible schema NoSQL database. Document-based and horizontally scalable." },
-    { "id": "firebase", "label": "Firebase Firestore", "icon": "logos:firebase", "type": "nosql", "category": "nosql", "description": "Cloud-hosted NoSQL database from Google. Real-time synchronization." },
-    { "id": "couchdb", "label": "CouchDB", "icon": "logos:couchdb-icon", "type": "nosql", "category": "nosql", "description": "NoSQL database with seamless multi-master sync. JSON document storage." },
+    { "id": "firebase", "label": "Firebase Firestore", "icon": "logos:firebase", "type": "nosql", "category": "nosql", "comingSoon": true, "description": "Cloud-hosted NoSQL database from Google. Real-time synchronization." },
+    { "id": "couchdb", "label": "CouchDB", "icon": "logos:couchdb-icon", "type": "nosql", "category": "nosql", "comingSoon": true, "description": "NoSQL database with seamless multi-master sync. JSON document storage." },
     { "id": "postgresql", "label": "PostgreSQL", "icon": "logos:postgresql", "type": "sql", "category": "sql", "description": "Powerful open-source relational database. ACID compliant and enterprise-grade." },
-    { "id": "mysql", "label": "MySQL", "icon": "logos:mysql-icon", "type": "sql", "category": "sql", "description": "Popular open-source relational database. Fast and reliable for web apps." },
-    { "id": "sqlite", "label": "SQLite", "icon": "logos:sqlite", "type": "sql", "category": "sql", "description": "Lightweight embedded SQL database. Perfect for small apps and prototypes." },
-    { "id": "mariadb", "label": "MariaDB", "icon": "logos:mariadb-icon", "type": "sql", "category": "sql", "description": "MySQL fork with enhanced features. Drop-in replacement with better performance." }
+    { "id": "mysql", "label": "MySQL", "icon": "logos:mysql-icon", "type": "sql", "category": "sql", "comingSoon": true, "description": "Popular open-source relational database. Fast and reliable for web apps." },
+    { "id": "sqlite", "label": "SQLite", "icon": "logos:sqlite", "type": "sql", "category": "sql", "comingSoon": true, "description": "Lightweight embedded SQL database. Perfect for small apps and prototypes." },
+    { "id": "mariadb", "label": "MariaDB", "icon": "logos:mariadb-icon", "type": "sql", "category": "sql", "comingSoon": true, "description": "MySQL fork with enhanced features. Drop-in replacement with better performance." }
   ],
   "fullstackCombinations": [
     { 
       "id": "mern", 
       "label": "MERN Stack", 
       "frontend": "React",
+      "frontendId": "react",
       "backend": "Node.js + Express",
+      "backendId": "node-express",
       "database": "MongoDB",
       "description": "MongoDB, Express, React, Node.js - The most popular JavaScript full stack."
     },
@@ -47,7 +49,9 @@
       "id": "mevn", 
       "label": "MEVN Stack", 
       "frontend": "Vue.js",
+      "frontendId": "vue",
       "backend": "Node.js + Express",
+      "backendId": "node-express",
       "database": "MongoDB",
       "description": "MongoDB, Express, Vue, Node.js - Progressive framework meets flexible database."
     },
@@ -55,7 +59,9 @@
       "id": "pern", 
       "label": "PERN Stack", 
       "frontend": "React",
+      "frontendId": "react",
       "backend": "Node.js + Express",
+      "backendId": "node-express",
       "database": "PostgreSQL",
       "description": "PostgreSQL, Express, React, Node.js - Enterprise-grade with reliable SQL database."
     },
@@ -63,25 +69,11 @@
       "id": "nextjs-fullstack", 
       "label": "Next.js Full Stack", 
       "frontend": "Next.js",
-      "backend": "Next API Routes / Node.js + Express",
+      "frontendId": "nextjs",
+      "backend": "Node.js + Express",
+      "backendId": "node-express",
       "database": "MongoDB / PostgreSQL",
       "description": "Next.js with API routes or separate backend. Flexible database choice."
-    },
-    { 
-      "id": "backend-api", 
-      "label": "Backend API Only", 
-      "frontend": "Any (Mobile/React/etc)",
-      "backend": "Node.js + Express",
-      "database": "MongoDB / PostgreSQL",
-      "description": "Pure backend API for mobile apps, SPAs, or microservices architecture."
-    },
-    { 
-      "id": "static-api", 
-      "label": "Static + API", 
-      "frontend": "HTML + CSS + JS",
-      "backend": "Node.js + Express",
-      "database": "MongoDB",
-      "description": "Simple static frontend with REST API backend. Lightweight and fast."
     }
   ],
   "languages": [
@@ -90,16 +82,16 @@
   ],
   "styling": [
     { "id": "tailwind", "label": "Tailwind CSS", "icon": "logos:tailwindcss-icon" },
-    { "id": "css-modules", "label": "CSS Modules", "icon": "lucide:file-code" },
-    { "id": "styled-components", "label": "Styled Components", "icon": "logos:styled-components" },
-    { "id": "sass", "label": "Sass/SCSS", "icon": "logos:sass" },
+    { "id": "css-modules", "label": "CSS Modules", "icon": "lucide:file-code", "comingSoon": true },
+    { "id": "styled-components", "label": "Styled Components", "icon": "logos:styled-components", "comingSoon": true },
+    { "id": "sass", "label": "Sass/SCSS", "icon": "logos:sass", "comingSoon": true },
     { "id": "none", "label": "Plain CSS", "icon": "lucide:file-code-2" }
   ],
   "componentLibraries": [
     { "id": "shadcn", "label": "ShadCN/UI", "icon": "simple-icons:shadcnui" },
-    { "id": "mui", "label": "Material UI", "icon": "logos:material-ui" },
-    { "id": "chakra", "label": "Chakra UI", "icon": "logos:chakra-ui" },
-    { "id": "antd", "label": "Ant Design", "icon": "logos:ant-design" },
+    { "id": "mui", "label": "Material UI", "icon": "logos:material-ui", "comingSoon": true },
+    { "id": "chakra", "label": "Chakra UI", "icon": "logos:chakra-ui", "comingSoon": true },
+    { "id": "antd", "label": "Ant Design", "icon": "logos:ant-design", "comingSoon": true },
     { "id": "none", "label": "None", "icon": "lucide:x" }
   ],
   "folderPresets": [
@@ -110,14 +102,14 @@
   "auth": [
     { "id": "none", "label": "None", "icon": "lucide:x" },
     { "id": "jwt", "label": "JWT Auth Routes", "icon": "logos:jwt-icon" },
-    { "id": "oauth", "label": "OAuth 2.0 Stubs", "icon": "lucide:shield-lock" },
-    { "id": "passport", "label": "Passport.js", "icon": "lucide:shield-check" }
+    { "id": "oauth", "label": "OAuth 2.0 Stubs", "icon": "lucide:shield-lock", "comingSoon": true },
+    { "id": "passport", "label": "Passport.js", "icon": "lucide:shield-check", "comingSoon": true }
   ],
   "orm": [
     { "id": "none", "label": "None", "icon": "lucide:x" },
     { "id": "prisma", "label": "Prisma", "icon": "logos:prisma" },
     { "id": "mongoose", "label": "Mongoose", "icon": "logos:mongoose" },
-    { "id": "drizzle", "label": "Drizzle", "icon": "logos:drizzle-icon" },
-    { "id": "typeorm", "label": "TypeORM", "icon": "lucide:database" }
+    { "id": "drizzle", "label": "Drizzle", "icon": "logos:drizzle-icon", "comingSoon": true },
+    { "id": "typeorm", "label": "TypeORM", "icon": "lucide:database", "comingSoon": true }
   ]
 }

@@ -1,6 +1,7 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DocSidebar } from "@/components/doc-sidebar";
+import { DocTOC } from "@/components/doc-toc";
 import { Icon } from "@iconify/react";
 
 export default function DocLayout({ children }) {
@@ -20,14 +21,8 @@ export default function DocLayout({ children }) {
                     {/* Table of Contents - Right Sidebar */}
                     <div className="hidden xl:block w-56 shrink-0 h-[calc(100vh-128px)] sticky top-32">
                         <div className="flex flex-col h-full">
-                            <div className="space-y-4 flex-1">
-                                <h5 className="text-sm font-bold text-white tracking-tight">On this page</h5>
-                                <nav className="flex flex-col gap-3">
-                                    <TOCLink href="#overview" text="What is StackStruct?" active />
-                                    <TOCLink href="#quick-start" text="How to use the docs" />
-                                    <TOCLink href="#why-opinionated" text="Why Opinionated?" />
-                                    <TOCLink href="#next-steps" text="Next Steps" />
-                                </nav>
+                            <div className="flex-1">
+                                <DocTOC />
 
                                 {/* LinkedIn Card */}
                                 <div className="mt-8 relative group cursor-pointer overflow-hidden rounded-xl border border-white/5 bg-white/2 hover:bg-white/4 hover:border-cyan-500/20 transition-all duration-500 shadow-2xl shadow-cyan-500/0 hover:shadow-cyan-500/10">
@@ -53,7 +48,7 @@ export default function DocLayout({ children }) {
                                 </div>
                             </div>
 
-                            {/* Divider and GitHub Link at the bottom of TOC as seen in screenshot */}
+                            {/* Divider and GitHub Link at the bottom of TOC */}
                             <div className="pt-8 border-t border-white/5 space-y-4">
                                 <a
                                     href="https://github.com/Deepanshu-dashore/StackStruct"
@@ -72,16 +67,5 @@ export default function DocLayout({ children }) {
 
             <Footer />
         </div>
-    );
-}
-
-function TOCLink({ href, text, active }) {
-    return (
-        <a
-            href={href}
-            className={`text-[13px] leading-relaxed transition-colors hover:text-white ${active ? 'text-white font-medium' : 'text-white/40'}`}
-        >
-            {text}
-        </a>
     );
 }

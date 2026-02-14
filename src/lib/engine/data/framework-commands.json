@@ -26,6 +26,10 @@
       "scaffold": "mkdir {{projectName}} && cd {{projectName}} && npm init -y",
       "install": "npm install express cors dotenv"
     },
+    "node-express": {
+      "scaffold": "mkdir {{projectName}} && cd {{projectName}} && npm init -y",
+      "install": "npm install express cors dotenv morgan"
+    },
     "nestjs": {
       "scaffold": "npx @nestjs/cli new {{projectName}} --package-manager npm --skip-git",
       "install": "cd {{projectName}}"
@@ -33,6 +37,18 @@
     "fastify": {
       "scaffold": "mkdir {{projectName}} && cd {{projectName}} && npm init -y",
       "install": "npm install fastify"
+    },
+    "django": {
+      "scaffold": "mkdir {{projectName}}",
+      "install": "echo 'Scaffolding Django (manual files injection)'"
+    },
+    "flask": {
+      "scaffold": "mkdir {{projectName}}",
+      "install": "echo 'Scaffolding Flask (manual files injection)'"
+    },
+    "springboot": {
+      "scaffold": "mkdir {{projectName}}",
+      "install": "echo 'Scaffolding Spring Boot (manual files injection)'"
     }
   },
   "features": {
