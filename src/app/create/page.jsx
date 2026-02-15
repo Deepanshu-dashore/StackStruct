@@ -46,14 +46,14 @@ export default function CreatePage() {
 
             <div className="flex-1 flex flex-col min-w-0">
                 <Header />
-                <main className="flex-1 transition-all duration-300 pl-64">
-                    <div className="px-6 py-12 pt-8 md:px-8">
+                <main className="flex-1 transition-all duration-300 lg:pl-64">
+                    <div className="px-4 py-8 md:px-8 md:py-12">
                         <div className="mx-auto w-full max-w-[1600px]">
-                            <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 mb-12">
-                                <div className="xl:col-span-5">
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+                                <div className="lg:col-span-5 xl:col-span-4">
                                     <ConfigPanel config={config} setConfig={setConfig} />
                                 </div>
-                                <div className="xl:col-span-7">
+                                <div className="lg:col-span-7 xl:col-span-8">
                                     <PreviewPanel fileTree={fileTree} />
                                 </div>
                             </div>

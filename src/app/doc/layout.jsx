@@ -9,17 +9,17 @@ export default function DocLayout({ children }) {
         <div className="flex min-h-screen flex-col bg-[#020206] text-white selection:bg-cyan-500/30">
             <Header />
 
-            <div className="flex-1 max-w-[1440px] mx-auto w-full flex items-start px-4 md:px-0 font-sans">
+            <div className="flex-1 max-w-[1440px] mx-auto w-full flex items-start px-4 lg:px-0 font-sans">
                 <DocSidebar />
 
                 <main className="flex-1 w-full min-w-0 flex gap-6 lg:gap-16 py-8 lg:py-16">
                     {/* Main Content Area */}
-                    <div className="flex-1 min-w-0 max-w-3xl pl-20">
+                    <div className="flex-1 min-w-0 max-w-3xl lg:pl-12 xl:pl-20">
                         {children}
                     </div>
 
                     {/* Table of Contents - Right Sidebar */}
-                    <div className="hidden xl:block w-56 shrink-0 h-[calc(100vh-128px)] sticky top-32">
+                    <div className="hidden xl:block w-64 shrink-0 h-[calc(100vh-128px)] sticky top-32">
                         <div className="flex flex-col h-full">
                             <div className="flex-1">
                                 <DocTOC />

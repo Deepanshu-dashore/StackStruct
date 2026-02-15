@@ -46,9 +46,9 @@ export function ConfigPanel({ config, setConfig }) {
     const showBackend = config.projectType.includes('backend');
 
     return (
-        <Card className="w-full glass px-5 bg-transparent border-white/5 h-full overflow-hidden shadow-none">
+        <Card className="w-full glass px-4 md:px-5 bg-transparent border-white/5 h-full overflow-hidden shadow-none">
             <CardHeader className="border-b border-white/5 bg-transparent py-6 px-0">
-                <CardTitle className="text-2xl font-bold tracking-tight text-white/90">Project Configuration</CardTitle>
+                <CardTitle className="text-xl md:text-2xl font-bold tracking-tight text-white/90">Project Configuration</CardTitle>
                 <CardDescription className="text-muted-foreground/40 text-sm mt-1">Tailor your project stack to your specific needs.</CardDescription>
             </CardHeader>
             <CardContent className="p-0">

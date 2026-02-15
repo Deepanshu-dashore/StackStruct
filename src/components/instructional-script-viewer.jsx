@@ -24,17 +24,17 @@ export function InstructionalScriptViewer({ script }) {
                 </Button>
             </div>
             <ScrollArea className="h-[calc(100vh-22rem)]">
-                <div className="p-10 md:p-12">
-                    <div className="flex flex-col gap-20">
+                <div className="p-6 md:p-12">
+                    <div className="flex flex-col gap-12 md:gap-20">
                         {/* Step 1 */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                            <div className="space-y-5">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
+                            <div className="space-y-4 md:space-y-5">
                                 <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-muted-foreground/40">
                                     <span>[ 01 ]</span>
                                     <div className="h-px flex-1 bg-white/5" />
                                 </div>
-                                <h1 className="text-2xl font-bold tracking-tight text-white/95">Initialize Project Environment</h1>
-                                <p className="text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
+                                <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white/95">Initialize Project Environment</h1>
+                                <p className="text-sm md:text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
                                     Open your <span className="text-emerald-400 font-semibold">Git Bash terminal</span>. Run the command below to create and enter your project workspace. This ensures all subsequent script operations execute with full Unix-shell compatibility.
                                 </p>
                             </div>
@@ -51,14 +51,14 @@ export function InstructionalScriptViewer({ script }) {
 
                         {/* Step 2: Framework Init */}
                         {script.frameworkScaffold?.length > 0 && (
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                                <div className="space-y-5">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
+                                <div className="space-y-4 md:space-y-5">
                                     <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-muted-foreground/40">
                                         <span>[ 02 ]</span>
                                         <div className="h-px flex-1 bg-white/5" />
                                     </div>
-                                    <h2 className="text-2xl font-bold tracking-tight text-white/95">Initialize Framework</h2>
-                                    <p className="text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
+                                    <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white/95">Initialize Framework</h2>
+                                    <p className="text-sm md:text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
                                         Run the official framework CLI to bootstrap the base project with your selected configurations.
                                     </p>
                                 </div>
@@ -75,14 +75,14 @@ export function InstructionalScriptViewer({ script }) {
                         )}
 
                         {/* Step 3: Custom Scaffolding */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                            <div className="space-y-5">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
+                            <div className="space-y-4 md:space-y-5">
                                 <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-muted-foreground/40">
                                     <span>[ 03 ]</span>
                                     <div className="h-px flex-1 bg-white/5" />
                                 </div>
-                                <h2 className="text-2xl font-bold tracking-tight text-white/95">Configure Architectural Core</h2>
-                                <p className="text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
+                                <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white/95">Configure Architectural Core</h2>
+                                <p className="text-sm md:text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
                                     Inject production-ready folder hierarchies, utility modules, and scalable organizational patterns tailored to your stack.
                                 </p>
                             </div>
@@ -99,14 +99,14 @@ export function InstructionalScriptViewer({ script }) {
 
                         {/* Step 4: Installation */}
                         {script.installCommands.length > 0 && (
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                                <div className="space-y-5">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
+                                <div className="space-y-4 md:space-y-5">
                                     <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-muted-foreground/40">
                                         <span>[ 04 ]</span>
                                         <div className="h-px flex-1 bg-white/5" />
                                     </div>
-                                    <h2 className="text-2xl font-bold tracking-tight text-white/95">Install Dependencies</h2>
-                                    <p className="text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
+                                    <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white/95">Install Dependencies</h2>
+                                    <p className="text-sm md:text-[15px] text-muted-foreground/60 leading-relaxed font-light max-w-md">
                                         Download and install all necessary npm packages for your selected framework and component libraries.
                                     </p>
                                 </div>
