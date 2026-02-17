@@ -4,6 +4,26 @@ import { DocSidebar } from "@/components/doc-sidebar";
 import { DocTOC } from "@/components/doc-toc";
 import { Icon } from "@iconify/react";
 
+export const metadata = {
+    title: 'Documentation',
+    description: 'Learn how to use StackStruct to build full-stack web applications. Comprehensive guides on architecture, frameworks, and best practices for production-ready code.',
+    keywords: [
+        'stackstruct documentation',
+        'project generator guide',
+        'fullstack development',
+        'react framework',
+        'nextjs guide',
+        'architecture patterns',
+        'developer tools',
+        'boilerplate generator',
+    ],
+    openGraph: {
+        title: 'Documentation - StackStruct',
+        description: 'Learn how to use StackStruct to build full-stack web applications with comprehensive guides and best practices.',
+        type: 'website',
+    },
+};
+
 export default function DocLayout({ children }) {
     return (
         <div className="flex min-h-screen flex-col bg-[#020206] text-white selection:bg-cyan-500/30">
